@@ -1,12 +1,5 @@
 "use strict";
 
-// const isDevMode = process.env.NODE_ENV === 'development';
-// const requirejs = require('requirejs');
-// requirejs.config({
-//   nodeRequire: require,
-//   baseUrl: __dirname,
-// });
-
 // Start the main app logic.
 const hft = require('hft');
 const GameServer = hft.GameServer;
@@ -14,6 +7,7 @@ const GameServer = hft.GameServer;
 cc.Class({
     extends: cc.Component,    
     properties: {
+        map: cc.Node
     },
 
     onLoad () {
