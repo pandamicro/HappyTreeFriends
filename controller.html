@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="format-detection" content="telephone=no" />
+  <title>Simple Controls</title>
+  <link rel="stylesheet" href="node_modules/hft-sample-ui/css/controller.css">
+  <link rel="stylesheet" href="css/controller.css">
+  <link rel="shortcut icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body touch-action="none">
+<div id="hft-everything">
+  <div id="hft-content">
+
+
+
+
+<!-- above this line is mostly simple-ui related html -->
+
+
+    <div id="gamearea" class="fixheight">
+      <h1 id="gamestatus">status</h1>
+      <div id="display" class="hft-fullcenter fixheight">
+        <div id="input" class="hft-instruction hft-fullcenter">Touch to Move</div>
+      </div>
+      <div id="inputarea"  class="hft-fullcenter fixheight"></div>
+    </div>
+
+<!-- below this line is mostly simple-ui related html -->
+
+
+
+
+    <div id="hft-menu"><img src="node_modules/hft-sample-ui/assets/gear-icon.svg"></div>
+    <div id="hft-disconnected">
+      <div class="hft-fullcenter">
+        <div class="hft-instruction">Switching Games...</div>
+        <!--
+        <div class="hft-menubutton" id="hft-reload"><div>Restart</div></div>
+        <div class="hft-menubutton" id="hft-mainmenu"><div>Main Menu</div></div>
+        -->
+      </div>
+    </div>
+    <div id="hft-debug">
+      <pre id="hft-status"></pre>
+      <div id="hft-console"></div>
+    </div>
+  </div>
+  <!-- name entry -->
+  <div id="hft-nameentry">
+    <div class="hft-fullcenter">
+      <div>
+        <form id="hft-nameform">
+          <div><label for="hft-name">Enter A Name:<label></div>
+          <input type="text" id="hft-name" maxlength="16" autocorrect="off" spellcheck="false" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- settings menu -->
+  <div id="hft-settings">
+    <div class="hft-fullcenter">
+      <div id="hft-setname" class="hft-menubutton"><div>Set Name</div></div>
+      <div id="hft-restart" class="hft-menubutton"><div>Restart</div></div>
+      <div id="hft-back"    class="hft-menubutton"><div>Back</div></div>
+    </div>
+  </div>
+  <!-- fullscreen/audio hit area -->
+  <div id="hft-touchstart">
+  </div>
+</div>
+<script data-main="scripts/controller.js" src="node_modules/requirejs/require.js"></script>
+</body>
+</html>
+
+

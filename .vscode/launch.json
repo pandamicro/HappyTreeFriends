@@ -1,0 +1,24 @@
+{
+    "version": "1.4.0",
+    "configurations": [
+        {
+            "name": "Creator Debug: Launch Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:7456",
+            "sourceMaps": true,
+            "userDataDir": "${workspaceRoot}/.vscode/chrome",
+            "diagnosticLogging": true,
+            "sourceMapPathOverrides": {
+                "assets/*": "${workspaceRoot}/assets/*"
+            },
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "program": "${workspaceRoot}/node_modules/happyfuntimes/start.js"
+        }        
+    ]
+}
