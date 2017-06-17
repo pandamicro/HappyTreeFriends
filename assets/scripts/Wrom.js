@@ -172,8 +172,21 @@ cc.Class({
             }
         }
     },
+
+    die() {
+        this.parent = null;
+        this.deadTime = 0;
+        this._game.createRip(this.node);
+    },
+
+    isdead(){
+        return this.parent == null
+    },
     
     rebirth () {
+        if(this.parent == null)
+            this.parent = this._game.wromsNode;
+
         this.score = 0;
         this.netPlayer.sendCmd('start');
     }

@@ -11,6 +11,8 @@ cc.Class({
 
         battleTime:180, // 单局游戏对战时间，秒
         rankSize:10, // 单局游戏对战时间，秒
+
+        rebirthTime: 5, // 复活需要的时间
     },
 
     // called every frame, uncomment this function to activate update callback
