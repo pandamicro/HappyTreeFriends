@@ -209,11 +209,14 @@ requirejs([
     };
 
     var handleDPad = function(e) {
+      var radian = 0;
       if (e.info)
       {
         dpads[e.pad].draw(e.info);
+        radian = e.radian ? e.radian : Math.PI * e.info.direction / 4;
+        radian = parseFloat(radian.toFixed(3));
       }
-      g_client.sendCmd('pad', {pad: e.pad, dir: e.info ? e.info.direction : -1, radian: parseFloat(e.radian.toFixed(3))});
+      g_client.sendCmd('pad', {pad: e.pad, dir: e.info ? e.info.direction : -1, radian: radian});
     };
 
     var keys = { };
