@@ -174,20 +174,26 @@ cc.Class({
     },
 
     die() {
-        this.parent = null;
+        this.node.parent = null;
         this.deadTime = 0;
         this._game.createRip(this.node);
+        this._map.recover(this._config.recoverOnDeath * this.score);
     },
 
     isdead(){
-        return this.parent == null
+        return this.node.parent == null
     },
     
     rebirth () {
         if(this.parent == null)
-            this.parent = this._game.wromsNode;
-
+            this.node.parent = this._game.wromsNode;
+        
         this.score = 0;
+        
+        var rect = this._config.birthRect;
+        this.node.x = rect.x + (Math.random() * rect.width) | 0;
+        this.node.y = rect.y + (Math.random() * rect.height) | 0;
+
         this.netPlayer.sendCmd('start');
     }
 });

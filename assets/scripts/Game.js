@@ -79,7 +79,7 @@ cc.Class({
         this.rankView.content.removeAllChildren();
         for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
             var r = cc.instantiate(this.rankPrefab);
-            r.y = - 25 - 40 * i;
+            r.y = - 25 - r.height * i;
             r.getChildByName('rank').getComponent(cc.Label).string = i + 1;
             r.active = false;
             this.rankView.content.addChild(r);
@@ -155,7 +155,6 @@ cc.Class({
 
     createRip(node){
         var rip = cc.instantiate(this.ripPrefab);
-        var loc = 
         rip.x = node.x + this.wromsNode.x - this.graveyard.x;
         rip.y = node.y + this.wromsNode.y - this.graveyard.y;
         var action = cc.moveTo(0.3, rip.x, 0);
@@ -184,5 +183,6 @@ cc.Class({
             }
         }
         this.map.reset()
+        this.graveyard.removeAllChildren();
     }
 });
