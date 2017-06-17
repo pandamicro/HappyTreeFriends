@@ -183,7 +183,10 @@
     },
     "blockWidth": 20,
     "blockHeight": 20,
-    "_pool": null
+    "_pool": null,
+    "_config": null,
+    "_timer": 0,
+    "_blockCount": 0
   },
   {
     "__type__": "cc.Node",
@@ -445,6 +448,7 @@
       "y": 200,
       "width": 1400,
       "height": 1000
-    }
+    },
+    "growRate": 1
   }
 ]

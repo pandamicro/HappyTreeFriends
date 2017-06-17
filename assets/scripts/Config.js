@@ -4,7 +4,8 @@ cc.Class({
     properties: {
         defaultSpeed: 10,
         eatTime: 3,
-        birthRect: cc.rect()
+        birthRect: cc.rect(),
+        growRate: 1
     },
 
     // called every frame, uncomment this function to activate update callback

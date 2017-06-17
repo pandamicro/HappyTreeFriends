@@ -6,12 +6,17 @@ cc.Class({
         blockPrefab: cc.Prefab,
         blockWidth: 20,
         blockHeight: 20,
-        _pool: null
+        _pool: null,
+        _config: null,
+        _timer: 0,
+        _blockCount: 0,
     },
 
     // use this for initialization
     onLoad: function () {
         cc.director.setClearColor(cc.color(255, 255, 255, 255));
+        this._config = cc.find('Canvas').getComponent('Config');
+        this._timer = 0;
 
         var width = cc.winSize.width,
             height = cc.winSize.height,
@@ -30,7 +35,8 @@ cc.Class({
             for (var c = 0; c < cols; c++) {
                 i = r * cols + c;
                 data = this._datas[i];
-                if (data) {
+                // if (data <= 0) {
+                if (data < 0) {
                     continue;
                 }
                 x = c * bw;
@@ -43,6 +49,7 @@ cc.Class({
                 color.b = parseInt(Math.random() * 70);
                 block.color = color;
                 block.parent = this.node;
+                this._blockCount++;
             }
         }
     },
@@ -54,20 +61,25 @@ cc.Class({
         var block = this._blocks[i];
         if (block) {
             block.parent = null;
+            this._blockCount--;
         }
         this._datas[i] = 0;
     },
 
     growBlock: function (i) {
-        if (!this._datas[i] && this._blocks[i]) {
+        if (this._datas[i] > 0 && this._blocks[i]) {
             var block = this._blocks[i];
             block.parent = this.node;
+            this._blockCount++;
         }
         this._datas[i] = 1;
-    }
+    },
 
     // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+    update (dt) {
+        this._timer += dt;
+        if (this._timer > this._config.growRate) {
+            this._timer = 0;
+        }
+    },
 });

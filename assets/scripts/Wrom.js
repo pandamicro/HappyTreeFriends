@@ -1,5 +1,3 @@
-var Map = require('Map');
-
 cc.Class({
     extends: cc.Component,
 
@@ -19,14 +17,19 @@ cc.Class({
     },
 
     onLoad () {
-        this._config = cc.find('Canvas').getComponent('Config');
-        this._map = cc.find('Canvas/Map').getComponent(Map);
+        if (!this._map) {
+            this._map = cc.find('Canvas/Map').getComponent('Map');
+        }
+        if (!this._config) {
+            this._config = cc.find('Canvas').getComponent('Config');
+        }
     },
 
     init (name, netPlayer, map) {
         this.nameLabel.string = name;
         this._netPlayer = netPlayer;
         this._map = map;
+        this._config = cc.find('Canvas').getComponent('Config');
 
         var rect = this._config.birthRect;
         this.node.x = rect.x + (Math.random() * rect.width) | 0;

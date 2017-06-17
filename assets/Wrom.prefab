@@ -192,8 +192,11 @@
       "__id__": 5
     },
     "level": 0,
-    "nameLabel": null,
+    "nameLabel": {
+      "__id__": 3
+    },
     "_map": null,
+    "_config": null,
     "_netPlayer": null,
     "_speed": 10,
     "_eatTime": 3,
