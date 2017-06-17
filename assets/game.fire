@@ -178,8 +178,8 @@
     "blockPrefab": {
       "__uuid__": "76cbfa56-f59a-4c40-b79a-facca1ee9b0e"
     },
-    "blockWidth": 40,
-    "blockHeight": 40,
+    "blockWidth": 20,
+    "blockHeight": 20,
     "_pool": null
   },
   {
@@ -429,6 +429,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "defaultSpeed": 10
+    "defaultSpeed": 10,
+    "eatSpeed": 3
   }
 ]
