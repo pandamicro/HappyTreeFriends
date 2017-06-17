@@ -73,16 +73,18 @@ cc.Class({
         if (block) {
             block.parent = null;
             this._emptyBlocks.push(i);
+            datas[i] = 0;
+            return true;
         }
-        datas[i] = 0;
+        return false;
     },
 
     growBlock: function (i) {
         if (datas[i] === 0 && this._blocks[i]) {
             var block = this._blocks[i];
             block.parent = this.node;
+            datas[i] = 1;
         }
-        datas[i] = 1;
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -8,7 +8,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        display: cc.Sprite,
+        display: cc.Node,
         score: 0,
         nameLabel: cc.Label,
         _map: null,
@@ -81,7 +81,7 @@ cc.Class({
     },
 
     handlePad (event) {
-        if (!event || isNaN(event.dir)) {
+        if (!event || isNaN(event.radian)) {
             this._moving = false;
             return;
         }
@@ -90,7 +90,8 @@ cc.Class({
                 this._moving = true;
                 this._timer = 0;
             }
-            this._orientation = event.dir * 180 / 4;
+            this._orientation = event.radian;
+            this.display.rotation = 360 - 180 * event.radian / Math.PI;
         }
         else {
             this._moving = false;
@@ -98,7 +99,7 @@ cc.Class({
     },
 
     handleDisconnection (event) {
-        console.log(event);
+        this.node.removeFromParent(true);
     },
 
     handleShowMsg (event) {
@@ -114,13 +115,13 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, function (event) {
             switch (event.keyCode) {
                 case cc.KEY.up:
-                this._orientation = 90;
+                this._orientation = Math.PI * 90 / 180;
                 break;
                 case cc.KEY.down:
-                this._orientation = 270;
+                this._orientation = Math.PI * 270 / 180;
                 break;
                 case cc.KEY.left:
-                this._orientation = 180;
+                this._orientation = Math.PI;
                 break;
                 case cc.KEY.right:
                 this._orientation = 0;
@@ -142,9 +143,8 @@ cc.Class({
     // called every frame, uncomment this function to activate update callback
     update (dt) {
         if (this._moving) {
-            var radian = Math.PI * this._orientation / 180;
-            var dx = this._speed * Math.cos(radian);
-            var dy = this._speed * Math.sin(radian);
+            var dx = this._speed * Math.cos(this._orientation);
+            var dy = this._speed * Math.sin(this._orientation);
             this.node.x += dx;
             this.node.y += dy;
 
@@ -157,8 +157,8 @@ cc.Class({
 
             this._timer += dt;
             if (this._timer > this._eatTime) {
-                this._map.eatBlock(this.node);
-                this.score++;
+                var ate = this._map.eatBlock(this.node);
+                if (ate) this.score++;
                 this._timer = 0;
                 this._eatTime = this._config.eatTime + ((Math.random() * 5 - 2) | 0) / 100;
             }

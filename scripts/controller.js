@@ -209,8 +209,11 @@ requirejs([
     };
 
     var handleDPad = function(e) {
-      dpads[e.pad].draw(e.info);
-      g_client.sendCmd('pad', {pad: e.pad, dir: e.info.direction});
+      if (e.info)
+      {
+        dpads[e.pad].draw(e.info);
+      }
+      g_client.sendCmd('pad', {pad: e.pad, dir: e.info ? e.info.direction : -1, radian: parseFloat(e.radian.toFixed(3))});
     };
 
     var keys = { };
@@ -232,7 +235,6 @@ requirejs([
       callback: handleDPad,
       fixedCenter: true,
       deadSpaceRadius: 0,
-      divisions: 4,
       pads: [
         {
           referenceElement: $("dpadleft"),

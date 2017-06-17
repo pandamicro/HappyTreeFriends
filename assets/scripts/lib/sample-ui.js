@@ -3588,7 +3588,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var computeDirByAngle = function(x, y) {
 	      var angle = Math.atan2(-y, x) + Math.PI * 2 + Math.PI / 8;
-	      return (Math.floor(angle / (Math.PI / 4))) % 8;
+	      return angle;
 	    };
 
 	    var computeDirByAngle4 = function(x, y) {
