@@ -189,9 +189,13 @@
     },
     "blockWidth": 20,
     "blockHeight": 20,
+    "blockAtlas": {
+      "__uuid__": "cec6c72a-7182-4d7c-a599-dd58214eb8b6"
+    },
     "_emptyBlocks": [],
     "_config": null,
-    "_timer": 0
+    "_timer": 0,
+    "_frames": null
   },
   {
     "__type__": "cc.Node",
@@ -1323,7 +1327,7 @@
     },
     "_enabled": true,
     "defaultSpeed": 10,
-    "eatTime": 0.2,
+    "eatTime": 0.03,
     "birthRect": {
       "__type__": "cc.Rect",
       "x": 100,

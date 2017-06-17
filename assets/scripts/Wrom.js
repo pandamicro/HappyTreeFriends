@@ -9,7 +9,7 @@ cc.Class({
 
     properties: {
         display: cc.Sprite,
-        level: 0,
+        score: 0,
         nameLabel: cc.Label,
         _map: null,
         _config: null,
@@ -47,7 +47,7 @@ cc.Class({
     },
 
     onEnable () {
-        this.level = 0;
+        this.score = 0;
         this._speed = this._config.defaultSpeed;
         this._eatTime = this._config.eatTime;
         this._orientation = 0;
@@ -148,10 +148,19 @@ cc.Class({
             this.node.x += dx;
             this.node.y += dy;
 
+            if (this.node.x < 20 || this.node.x > cc.winSize.width - 20) {
+                this.node.x -= dx;
+            }
+            if (this.node.y < 220 || this.node.y > cc.winSize.height - 20) {
+                this.node.y -= dy;
+            }
+
             this._timer += dt;
             if (this._timer > this._eatTime) {
                 this._map.eatBlock(this.node);
+                this.score++;
                 this._timer = 0;
+                this._eatTime = this._config.eatTime + ((Math.random() * 5 - 2) | 0) / 100;
             }
         }
     },

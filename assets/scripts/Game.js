@@ -30,7 +30,7 @@ cc.Class({
         var server = new GameServer();
         // A new player has arrived.
         var self = this;
-        self.wromsNode.removeAllChildren();
+        // self.wromsNode.removeAllChildren();
         server.addEventListener('playerconnect', function (netPlayer, name) {
             let wrom = cc.instantiate(self.wromPrefab).getComponent('Wrom');
             wrom.init(name, netPlayer, self.map);
