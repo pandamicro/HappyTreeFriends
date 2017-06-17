@@ -426,7 +426,9 @@
     "map": {
       "__id__": 3
     },
-    "wromsNode": null,
+    "wromsNode": {
+      "__id__": 6
+    },
     "wromPrefab": {
       "__uuid__": "b15063bb-3868-41c7-b552-f814dd484e19"
     },

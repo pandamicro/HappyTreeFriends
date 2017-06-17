@@ -26,7 +26,7 @@ cc.Class({
             let wrom = cc.instantiate(self.wromPrefab).getComponent('Wrom');
             wrom.init(name, netPlayer, self.map);
             self.wromsNode.addChild(wrom.node);
-            self.wroms.push(wrom);
+            self._wroms.push(wrom);
         });
     },
 
