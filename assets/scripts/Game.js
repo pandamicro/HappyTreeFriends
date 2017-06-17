@@ -37,7 +37,7 @@ cc.Class({
         server.addEventListener('playerconnect', function (netPlayer, name) {
             let wrom = cc.instantiate(self.wromPrefab).getComponent('Wrom');
             wrom.init(name, netPlayer, self.map);
-            wrom.enabled = this._time > 0; // 游戏不在结算中
+            wrom.enabled = self._time > 0; // 游戏不在结算中
             self.wromsNode.addChild(wrom.node);
             self._wroms.push(wrom);
         });
@@ -60,6 +60,10 @@ cc.Class({
         this._time -= dt;
         if (this._time <= 0) {// 由非结束到结束->结算时间 
             this._wroms.sort((o1, o2) => { return o1.score - o2.score });
+            for (var i = 0; i < this._wroms.length; ++i) {
+                if(this._wroms[i])
+                    this._wroms[i].enabled = false;
+            }
 
             let settlenode = cc.instantiate(this.settlePrefab);
             settlenode.getComponent('SettlePanel').setRanker(this._wroms);
@@ -96,8 +100,9 @@ cc.Class({
         for(var i=0;i < this._wroms.length; ++i){
             var w = this._wroms[i];
             if(w){
-                this._wroms[i].score = 0;
-                this._wroms[i].rebirth();
+                w.enabled = true;
+                w.score = 0;
+                w.rebirth();
             }
         }
         this.map.reset()
