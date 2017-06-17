@@ -7,7 +7,8 @@ cc.Class({
         display: cc.Sprite,
         level: 0,
         nameLabel: cc.Label,
-        _map: Map,
+        _map: null,
+        _config: null,
         _netPlayer: null,
         _speed: 10,
         _eatTime: 3,
@@ -17,10 +18,9 @@ cc.Class({
         _inited: false
     },
 
-    start () {
-        if (!this._map) {
-            this._map = cc.find('Canvas/Map').getComponent(Map);
-        }
+    onLoad () {
+        this._config = cc.find('Canvas').getComponent('Config');
+        this._map = cc.find('Canvas/Map').getComponent(Map);
     },
 
     init (name, netPlayer, map) {
@@ -28,11 +28,14 @@ cc.Class({
         this._netPlayer = netPlayer;
         this._map = map;
 
+        var rect = this._config.birthRect;
+        this.node.x = rect.x + (Math.random() * rect.width) | 0;
+        this.node.y = rect.y + (Math.random() * rect.height) | 0;
+
         this.initControl();
     },
 
     onEnable () {
-        var Config = cc.find('Canvas').getComponent('Config');
         this.level = 0;
         this._speed = Config.defaultSpeed;
         this._eatTime = Config.eatTime;

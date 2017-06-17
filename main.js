@@ -68,11 +68,10 @@ happyfuntimes.start(args)
 
 function createWindow() {
   const {width: screenWidth, height: screenHeight} = electron.screen.getPrimaryDisplay().workAreaSize;
-  const space = 50;
-  const x = space;
-  const y = space;
-  const width = screenWidth - space * 2;
-  const height = screenHeight - space * 2;
+  const width = 1200;
+  const height = 600;
+  const x = (screenWidth - width) / 2;
+  const y = (screenHeight - height) / 2;
 
   gameWindow = new BrowserWindow({
     // setting to true doesn't work in Windows

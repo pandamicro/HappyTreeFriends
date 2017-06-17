@@ -102,7 +102,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 106.7,
+      "width": 97.87,
       "height": 40
     },
     "_rotationX": 0,
@@ -199,7 +199,8 @@
     "_eatTime": 3,
     "_orientation": 0,
     "_timer": 0,
-    "_moving": false
+    "_moving": false,
+    "_inited": false
   },
   {
     "__type__": "cc.PrefabInfo",

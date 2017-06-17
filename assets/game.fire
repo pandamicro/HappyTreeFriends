@@ -361,7 +361,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -500
+      "y": -502
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -438,6 +438,13 @@
     },
     "_enabled": true,
     "defaultSpeed": 10,
-    "eatTime": 0.2
+    "eatTime": 0.2,
+    "birthRect": {
+      "__type__": "cc.Rect",
+      "x": 100,
+      "y": 200,
+      "width": 1400,
+      "height": 1000
+    }
   }
 ]
