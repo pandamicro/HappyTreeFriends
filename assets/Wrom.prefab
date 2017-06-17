@@ -209,8 +209,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 55,
+      "height": 42
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -237,7 +237,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "b7fb41f1-98d7-436c-9d12-b9f003e93939"
+      "__uuid__": "53f602d8-c0d9-4a1d-bcd6-6d740885063e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -252,7 +252,9 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": null
+    "_atlas": {
+      "__uuid__": "53dbec13-ed18-4e91-8bd2-01ba8f386143"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -280,9 +282,13 @@
     "nameLabel": {
       "__id__": 3
     },
+    "atlas": {
+      "__uuid__": "53dbec13-ed18-4e91-8bd2-01ba8f386143"
+    },
+    "netPlayer": null,
+    "_game": null,
     "_map": null,
     "_config": null,
-    "_netPlayer": null,
     "_speed": 10,
     "_eatTime": 3,
     "_orientation": 0,

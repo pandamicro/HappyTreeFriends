@@ -26,6 +26,7 @@ cc.Class({
 
     onLoad() {
         this._wroms = {};
+        cc.view.enableAntiAlias(false);
         this.initServer();
     },
 

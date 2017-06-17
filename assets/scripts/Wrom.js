@@ -11,6 +11,7 @@ cc.Class({
         display: cc.Node,
         score: 0,
         nameLabel: cc.Label,
+        atlas: cc.SpriteAtlas,
         netPlayer: null,
         _game: null,
         _map: null,
@@ -31,6 +32,8 @@ cc.Class({
         if (!this._config) {
             this._config = cc.find('Canvas').getComponent('Config');
         }
+        var frame = 'bugggg' + ((Math.random() * 8) | 0 + 1);
+        this.display.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame(frame);
     },
 
     init (name, netPlayer, game) {
