@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         defaultSpeed: 10,
-        eatSpeed: 3
+        eatTime: 3
     },
 
     // called every frame, uncomment this function to activate update callback
