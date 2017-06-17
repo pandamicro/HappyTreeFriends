@@ -25,8 +25,42 @@ cc.Class({
     },
 
     onLoad() {
-        this._wroms = new Array(20);
+        this._wroms = {};
         this.initServer();
+    },
+
+    getWrom (netPlayer, name) {
+        var wrom = this._wroms[name];
+        if (wrom && wrom.isConnected()) {
+            wrom = cc.instantiate(this.wromPrefab).getComponent('Wrom');
+            name = name + '2';
+            this._wroms[name] =  wrom;
+        }
+        else if (!wrom) {
+            wrom = cc.instantiate(this.wromPrefab).getComponent('Wrom');
+            this._wroms[name] = wrom;
+        }
+        wrom.init(name, netPlayer, this);
+        wrom.enabled = this._time > 0;
+
+        if (!wrom.node.parent) {
+            wrom.node.parent = this.wromsNode;
+        }
+    },
+
+    changeWromName (oldname, name) {
+        var wrom = this._wroms[oldname];
+        if (wrom) {
+            var existed = this._wroms[name];
+            if (existed && existed.netPlayer.isConnected()) {
+                wrom.nameLabel.string = name + '1';
+                this.changeWromName(oldname, name + '1');
+            }
+            else {
+                this._wroms[name] = wrom;
+                delete this._wroms[oldname];
+            }
+        }
     },
 
     initServer() {
@@ -34,13 +68,7 @@ cc.Class({
         // A new player has arrived.
         var self = this;
         // self.wromsNode.removeAllChildren();
-        server.addEventListener('playerconnect', function (netPlayer, name) {
-            let wrom = cc.instantiate(self.wromPrefab).getComponent('Wrom');
-            wrom.init(name, netPlayer, self.map);
-            wrom.enabled = self._time > 0; // 游戏不在结算中
-            self.wromsNode.addChild(wrom.node);
-            self._wroms.push(wrom);
-        });
+        server.addEventListener('playerconnect', this.getWrom.bind(this));
         this._time = this.getComponent('Config').battleTime;
 
         // 排行榜
@@ -59,18 +87,20 @@ cc.Class({
         // 更新计时器
         this._time -= dt;
         if (this._time <= 0) {// 由非结束到结束->结算时间 
-            this._wroms.sort((o1, o2) => { return o1.score - o2.score });
-            for (var i = 0; i < this._wroms.length; ++i) {
-                if(this._wroms[i])
-                    this._wroms[i].enabled = false;
+            var names = Object.keys(this._wroms);
+            names.sort((o1, o2) => { return this._wroms[o2].score - this._wroms[o1].score });
+            for (var i = 0; i < names.length; ++i) {
+                var worm = this._wroms[names[i]];
+                if (worm)
+                    worm.enabled = false;
             }
 
             let settlenode = cc.instantiate(this.settlePrefab);
-            settlenode.getComponent('SettlePanel').setRanker(this._wroms);
+            settlenode.getComponent('SettlePanel').setRanker(this._wroms[names[0]], this._wroms[names[1]], this._wroms[names[2]]);
             settlenode.x = 0;
             settlenode.y = 0;
             this.node.addChild(settlenode);
-            return
+            return;
         } else {
             var t = Math.floor(this._time);
             this.timerNode.getComponent(cc.Label).string = ("0" + Math.floor(t/60)).substr(-2)+":"+ ("0" + Math.floor(t%60)).substr(-2);
@@ -79,9 +109,10 @@ cc.Class({
             if (this._rankTime >= 1) {
                 this._rankTime = 0;
                 // 更新排行榜
-                this._wroms.sort((o1, o2) => { return o1.score - o2.score })
+                var names = Object.keys(this._wroms);
+                names.sort((o1, o2) => { return this._wroms[o2].score - this._wroms[o1].score });
                 for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
-                    var w = this._wroms[i];
+                    var w = this._wroms[names[i]];
                     var r = this.rankView.content.children[i];
                     if(w){
                         r.active = true;
@@ -97,8 +128,8 @@ cc.Class({
 
     newBattle(){
         this._time = this.getComponent('Config').battleTime;
-        for(var i=0;i < this._wroms.length; ++i){
-            var w = this._wroms[i];
+        for(var name in this._wroms){
+            var w = this._wroms[name];
             if(w){
                 w.enabled = true;
                 w.score = 0;

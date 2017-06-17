@@ -11,9 +11,10 @@ cc.Class({
         display: cc.Node,
         score: 0,
         nameLabel: cc.Label,
+        netPlayer: null,
+        _game: null,
         _map: null,
         _config: null,
-        _netPlayer: null,
         _speed: 10,
         _eatTime: 3,
         _orientation: 0,
@@ -32,11 +33,12 @@ cc.Class({
         }
     },
 
-    init (name, netPlayer, map) {
+    init (name, netPlayer, game) {
         this.nameLabel.string = name;
-        this._netPlayer = netPlayer;
+        this.netPlayer = netPlayer;
         this._playerNameManager = new PlayerNameManager(netPlayer);
-        this._map = map;
+        this._game = game;
+        this._map = game.map;
         this._config = cc.find('Canvas').getComponent('Config');
 
         var rect = this._config.birthRect;
@@ -54,13 +56,13 @@ cc.Class({
         this._moving = false;
 
         this.testControl();
-        if (this._netPlayer && !this._inited) {
+        if (this.netPlayer && !this._inited) {
             this.initControl();
         }
     },
 
     onDisable () {
-        this._netPlayer.removeAllListeners();
+        this.netPlayer.removeAllListeners();
         this._inited = false;
     },
 
@@ -69,7 +71,7 @@ cc.Class({
             return;
         }
 
-        var netPlayer = this._netPlayer;
+        var netPlayer = this.netPlayer;
         netPlayer.on('disconnect', this.handleDisconnection.bind(this));
         netPlayer.on('pad', this.handlePad.bind(this));
         netPlayer.on('abutton', function() {});
@@ -107,8 +109,11 @@ cc.Class({
     },
 
     handleNameMsg (name) {
-        if (name)
+        if (name) {
+            var oldname = this.nameLabel.string;
             this.nameLabel.string = name;
+            this._game.changeWromName(oldname, name);
+        }
     },
 
     testControl () {
@@ -165,7 +170,8 @@ cc.Class({
         }
     },
     
-    rebirth(){
-
+    rebirth () {
+        this.score = 0;
+        this.netPlayer.sendCmd('waitForNextGame');
     }
 });

@@ -37,22 +37,22 @@ cc.Class({
         this._time = 10;
     },
 
-    setRanker:function(wroms){
-        if(wroms[0]){
-            this.rankLabel_1.string = wroms[0].nameLabel.string
+    setRanker:function(wrom1, wrom2, wrom3){
+        if(wrom1){
+            this.rankLabel_1.string = wrom1.nameLabel.string
         } else {
             this.rankLabel_1.string = 'No Winner!!'
         }
 
-        if(wroms[1]){
-            this.rankLabel_2.string = wroms[1].nameLabel.string
+        if(wrom2){
+            this.rankLabel_2.string = wrom2.nameLabel.string
             this.rankLabel_2.node.active = true
         }else{
             this.rankLabel_2.node.active = false
         }
 
-        if(wroms[2]){
-            this.rankLabel_3.string = wroms[2].nameLabel.string
+        if(wrom3){
+            this.rankLabel_3.string = wrom3.nameLabel.string
             this.rankLabel_3.node.active = true
         }else{
             this.rankLabel_3.node.active = false
