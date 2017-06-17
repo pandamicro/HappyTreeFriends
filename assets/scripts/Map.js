@@ -11,6 +11,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        cc.director.setClearColor(cc.color(255, 255, 255, 255));
+
         var width = cc.winSize.width,
             height = cc.winSize.height,
             bw = this.blockWidth,
@@ -47,7 +49,7 @@ cc.Class({
 
     eatBlock: function (wrom) {
         var col = Math.round(wrom.x / this.blockWidth);
-        var row = Math.round(wrom.y / this.blockHeight);
+        var row = this._rows - 1 - Math.floor(wrom.y / this.blockHeight);
         var i = row * this._cols + col;
         var block = this._blocks[i];
         if (block) {

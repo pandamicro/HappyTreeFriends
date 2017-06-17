@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Splash",
+    "_name": "Worm",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -19,30 +19,33 @@
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 4
     },
     "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 41,
+      "r": 255,
       "g": 255,
-      "b": 22,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 0.5,
+      "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 50,
+      "height": 42
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -50,8 +53,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 800,
+      "y": 600
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -69,7 +72,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "056ddd85-1970-4a5f-890d-a977e55bd901"
+      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -87,14 +90,31 @@
     "_atlas": null
   },
   {
+    "__type__": "d1e42O0+HJLIrQGeDBoibPO",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "display": {
+      "__id__": 2
+    },
+    "level": 0,
+    "_map": null,
+    "_speed": 10,
+    "_orientation": 0,
+    "_moving": false
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "76cbfa56-f59a-4c40-b79a-facca1ee9b0e"
+      "__uuid__": "b15063bb-3868-41c7-b552-f814dd484e19"
     },
-    "fileId": "78c26BAV75PErSOFzw9vbj4",
+    "fileId": "ec362InjvlPhoNLNB7oZO6W",
     "sync": false
   }
 ]
