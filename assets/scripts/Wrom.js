@@ -37,8 +37,8 @@ cc.Class({
 
     onEnable () {
         this.level = 0;
-        this._speed = Config.defaultSpeed;
-        this._eatTime = Config.eatTime;
+        this._speed = this._config.defaultSpeed;
+        this._eatTime = this._config.eatTime;
         this._orientation = 0;
         this._moving = false;
 
