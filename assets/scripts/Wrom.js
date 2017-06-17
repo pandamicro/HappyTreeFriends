@@ -61,12 +61,15 @@ cc.Class({
             return;
         }
         var self = this;
-        this._netPlayer.addEventListener('moving', function (orientation) {
+        this._netPlayer.addEventListener('moving', function (event) {
+            if (!event || isNaN(event.orientation)) {
+                return;
+            }
             if (!self._moving) {
                 self._moving = true;
                 self._timer = 0;
             }
-            self._orientation = orientation;
+            self._orientation = event.orientation;
         });
         this._netPlayer.addEventListener('stop', function () {
             self._moving = false;
