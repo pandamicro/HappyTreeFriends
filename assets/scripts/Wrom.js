@@ -172,6 +172,6 @@ cc.Class({
     
     rebirth () {
         this.score = 0;
-        this.netPlayer.sendCmd('waitForNextGame');
+        this.netPlayer.sendCmd('start');
     }
 });

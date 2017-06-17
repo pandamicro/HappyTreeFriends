@@ -89,8 +89,11 @@ cc.Class({
         }
     },
 
-    reset:function(){
-
+    reset:function () {
+        for (var i = 0; i < this._emptyBlocks.length; ++i){
+            this.growBlock(this._emptyBlocks[i]);
+        }
+        this._emptyBlocks.length = 0;
     },
 
     // called every frame, uncomment this function to activate update callback

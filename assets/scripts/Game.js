@@ -91,6 +91,7 @@ cc.Class({
             names.sort((o1, o2) => { return this._wroms[o2].score - this._wroms[o1].score });
             for (var i = 0; i < names.length; ++i) {
                 var worm = this._wroms[names[i]];
+                worm.netPlayer.sendCmd('waitForNextGame');
                 if (worm)
                     worm.enabled = false;
             }
@@ -137,9 +138,5 @@ cc.Class({
             }
         }
         this.map.reset()
-    },
-
-    pickRandomPosition() {
-
     }
 });
