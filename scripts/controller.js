@@ -213,7 +213,7 @@ requirejs([
       if (e.info)
       {
         dpads[e.pad].draw(e.info);
-        radian = e.radian ? e.radian : Math.PI * e.info.direction / 4;
+        radian = isNaN(e.radian) ? Math.PI * e.info.direction / 4 : e.radian;
         radian = parseFloat(radian.toFixed(3));
       }
       g_client.sendCmd('pad', {pad: e.pad, dir: e.info ? e.info.direction : -1, radian: radian});
