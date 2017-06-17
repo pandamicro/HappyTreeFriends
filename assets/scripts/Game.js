@@ -3,11 +3,12 @@
 // Start the main app logic.
 const hft = require('hft');
 const GameServer = hft.GameServer;
+const Map = require('Map');
 
 cc.Class({
     extends: cc.Component,    
     properties: {
-        map: cc.Node,
+        map: Map,
         wromsNode: cc.Node,
         wromPrefab: cc.Prefab,
         _wroms: null

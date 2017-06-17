@@ -6,10 +6,9 @@ cc.Class({
         blockPrefab: cc.Prefab,
         blockWidth: 20,
         blockHeight: 20,
-        _pool: null,
+        _emptyBlocks: [],
         _config: null,
-        _timer: 0,
-        _blockCount: 0,
+        _timer: 0
     },
 
     // use this for initialization
@@ -49,7 +48,6 @@ cc.Class({
                 color.b = parseInt(Math.random() * 70);
                 block.color = color;
                 block.parent = this.node;
-                this._blockCount++;
             }
         }
     },
@@ -61,7 +59,7 @@ cc.Class({
         var block = this._blocks[i];
         if (block) {
             block.parent = null;
-            this._blockCount--;
+            this._emptyBlocks.push(i);
         }
         this._datas[i] = 0;
     },
@@ -70,7 +68,6 @@ cc.Class({
         if (this._datas[i] > 0 && this._blocks[i]) {
             var block = this._blocks[i];
             block.parent = this.node;
-            this._blockCount++;
         }
         this._datas[i] = 1;
     },
@@ -80,6 +77,15 @@ cc.Class({
         this._timer += dt;
         if (this._timer > this._config.growRate) {
             this._timer = 0;
+            var emptyCount = this._emptyBlocks.length;
+            if (emptyCount / (this._rows  * this._cols) > this._config.beginGrow) {
+                for (var i = 0; i < this._config.growCount; ++i) {
+                    var index = (emptyCount * Math.random()) | 0;
+                    this.growBlock(index);
+                    this._emptyBlocks[index] = this._emptyBlocks[emptyCount - 1];
+                    this._emptyBlocks.length = emptyCount - 1;
+                }
+            }
         }
     },
 });

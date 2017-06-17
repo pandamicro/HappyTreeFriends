@@ -183,10 +183,9 @@
     },
     "blockWidth": 20,
     "blockHeight": 20,
-    "_pool": null,
+    "_emptyBlocks": [],
     "_config": null,
-    "_timer": 0,
-    "_blockCount": 0
+    "_timer": 0
   },
   {
     "__type__": "cc.Node",
@@ -424,7 +423,7 @@
     },
     "_enabled": true,
     "map": {
-      "__id__": 3
+      "__id__": 4
     },
     "wromsNode": {
       "__id__": 6
@@ -443,7 +442,7 @@
     },
     "_enabled": true,
     "defaultSpeed": 10,
-    "eatTime": 0.2,
+    "eatTime": 0.05,
     "birthRect": {
       "__type__": "cc.Rect",
       "x": 100,
@@ -451,6 +450,8 @@
       "width": 1400,
       "height": 1000
     },
-    "growRate": 1
+    "growRate": 1,
+    "beginGrow": 0.1,
+    "growCount": 10
   }
 ]

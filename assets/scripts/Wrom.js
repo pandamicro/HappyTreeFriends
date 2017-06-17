@@ -1,3 +1,9 @@
+"use strict";
+
+const hft = require('hft');
+const sampleUI = require('hft-sample-ui');
+const PlayerNameManager = sampleUI.PlayerNameManager;
+
 cc.Class({
     extends: cc.Component,
 
@@ -13,7 +19,8 @@ cc.Class({
         _orientation: 0,
         _timer: 0,
         _moving: false,
-        _inited: false
+        _inited: false,
+        _playerNameManager: null
     },
 
     onLoad () {
@@ -28,6 +35,7 @@ cc.Class({
     init (name, netPlayer, map) {
         this.nameLabel.string = name;
         this._netPlayer = netPlayer;
+        this._playerNameManager = new PlayerNameManager(netPlayer);
         this._map = map;
         this._config = cc.find('Canvas').getComponent('Config');
 
@@ -60,21 +68,46 @@ cc.Class({
         if (this._inited) {
             return;
         }
-        var self = this;
-        this._netPlayer.addEventListener('moving', function (event) {
-            if (!event || isNaN(event.orientation)) {
-                return;
-            }
-            if (!self._moving) {
-                self._moving = true;
-                self._timer = 0;
-            }
-            self._orientation = event.orientation;
-        });
-        this._netPlayer.addEventListener('stop', function () {
-            self._moving = false;
-        });
+
+        var netPlayer = this._netPlayer;
+        netPlayer.on('disconnect', this.handleDisconnection.bind(this));
+        netPlayer.on('pad', this.handlePad.bind(this));
+        netPlayer.on('abutton', function() {});
+        netPlayer.on('show', this.handleShowMsg.bind(this));
+        this._playerNameManager.on('setName', this.handleNameMsg.bind(this));
+        // this.playerNameManager.on('busy', this.handleBusyMsg.bind(this));
+        
         this._inited = true;
+    },
+
+    handlePad (event) {
+        if (!event || isNaN(event.dir)) {
+            this._moving = false;
+            return;
+        }
+        if (event.dir >= 0) {
+            if (!this._moving) {
+                this._moving = true;
+                this._timer = 0;
+            }
+            this._orientation = event.dir * 180 / 4;
+        }
+        else {
+            this._moving = false;
+        }
+    },
+
+    handleDisconnection (event) {
+        console.log(event);
+    },
+
+    handleShowMsg (event) {
+        console.log(event);
+    },
+
+    handleNameMsg (name) {
+        if (name)
+            this.nameLabel.string = name;
     },
 
     testControl () {
