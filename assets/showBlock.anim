@@ -1,0 +1,85 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "showBlock",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.2,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 255
+        },
+        {
+          "frame": 0.08333333333333333,
+          "value": 0
+        },
+        {
+          "frame": 0.2,
+          "value": 255
+        }
+      ],
+      "scaleY": [
+        {
+          "frame": 0,
+          "value": 1
+        },
+        {
+          "frame": 0.08333333333333333,
+          "value": 2
+        },
+        {
+          "frame": 0.2,
+          "value": 1
+        }
+      ],
+      "scaleX": [
+        {
+          "frame": 0,
+          "value": 1
+        },
+        {
+          "frame": 0.08333333333333333,
+          "value": 2
+        },
+        {
+          "frame": 0.2,
+          "value": 1
+        }
+      ],
+      "anchorX": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.08333333333333333,
+          "value": 0.25
+        },
+        {
+          "frame": 0.2,
+          "value": 0
+        }
+      ],
+      "anchorY": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.08333333333333333,
+          "value": 0.25
+        },
+        {
+          "frame": 0.2,
+          "value": 0
+        }
+      ]
+    }
+  },
+  "events": []
+}

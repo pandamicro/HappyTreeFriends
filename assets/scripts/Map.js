@@ -50,16 +50,17 @@ cc.Class({
                 block.x = x;
                 block.y = y;
                 if (data === 1) {
-                    color.r = 30 + parseInt(Math.random() * 30);
-                    color.g = 100 + parseInt(Math.random() * 50);
-                    color.b = parseInt(Math.random() * 20);
+                    color.r = 30 + (Math.random() * 30) | 0;
+                    color.g = 100 + (Math.random() * 50) | 0;
+                    color.b = (Math.random() * 20) | 0;
                 }
                 else if (data === 2) {
-                    color.r = parseInt(Math.random() * 25);
-                    color.g = 200 + parseInt(Math.random() * 56);
-                    color.b = parseInt(Math.random() * 70);
+                    color.r = 200 + (Math.random() * 56) | 0;
+                    color.g = 150 + (Math.random() * 30) | 0;
+                    color.b = 50 + (Math.random() * 50) | 0;
                 }
                 block.color = color;
+                block.opacity = 200;
                 block.parent = this.node;
             }
         }
@@ -82,6 +83,7 @@ cc.Class({
     growBlock: function (i) {
         if (datas[i] === 0 && this._blocks[i]) {
             var block = this._blocks[i];
+            block.getComponent(cc.Animation).play('showBlock');
             block.parent = this.node;
             datas[i] = 1;
         }
@@ -99,9 +101,9 @@ cc.Class({
             if (this._emptyBlocks.length / (this._rows  * this._cols) > this._config.beginGrow) {
                 for (var i = 0; i < this._config.growCount; ++i) {
                     var index = (this._emptyBlocks.length * Math.random()) | 0;
-                    this.growBlock(index);
+                    this.growBlock(this._emptyBlocks[index]);
                     this._emptyBlocks[index] = this._emptyBlocks[this._emptyBlocks.length - 1];
-                    this._emptyBlocks.length = this._emptyBlocks.length - 1;
+                    this._emptyBlocks.length--;
                 }
             }
         }
