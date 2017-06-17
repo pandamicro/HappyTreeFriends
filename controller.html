@@ -14,30 +14,23 @@
   <link rel="stylesheet" href="css/controller.css">
   <link rel="shortcut icon" href="icon.png" type="image/png">
   <link rel="apple-touch-icon" href="icon.png">
-</head>
-<body touch-action="none">
+</head><body touch-action="none">
 <div id="hft-everything">
   <div id="hft-content">
 
-
-
-
-<!-- above this line is mostly simple-ui related html -->
-
-
-    <div id="gamearea" class="fixheight">
-      <h1 id="gamestatus">status</h1>
-      <div id="display" class="hft-fullcenter fixheight">
-        <div id="input" class="hft-instruction hft-fullcenter">Touch to Move</div>
-      </div>
-      <div id="inputarea"  class="hft-fullcenter fixheight"></div>
+    <div id="buttons" class="hft-fullsize">
+      <canvas id="bombs"></canvas>
+      <canvas id="bombsize"></canvas>
+      <div id="dpadleft"></div>
+      <canvas id="avatar"></canvas>
+      <div id="abutton" class="button">&#9673;</div>
+      <div id="dpadleftinput"></div>
+      <div id="avatarinput"></div>
+      <div id="abuttoninput"></div>
     </div>
-
-<!-- below this line is mostly simple-ui related html -->
-
-
-
-
+    <div id="msgcontainer" class="hft-fullsize fixheight">
+      <div id="msg"></div>
+    </div>
     <div id="hft-menu"><img src="node_modules/hft-sample-ui/assets/gear-icon.svg"></div>
     <div id="hft-disconnected">
       <div class="hft-fullcenter">
