@@ -15,10 +15,13 @@ cc.Class({
 
         timerNode: cc.Node,
         _time: 0,
+        _running: true,
 
         rankView: { default: null, type: cc.ScrollView },
         rankPrefab: { default: null, type: cc.Prefab },
-        _rankTime: 0
+        _rankTime: 0,
+        
+        settlePrefab: cc.Prefab,
     },
 
     onLoad() {
@@ -34,6 +37,7 @@ cc.Class({
         server.addEventListener('playerconnect', function (netPlayer, name) {
             let wrom = cc.instantiate(self.wromPrefab).getComponent('Wrom');
             wrom.init(name, netPlayer, self.map);
+            wrom.enabled = this._time > 0; // 游戏不在结算中
             self.wromsNode.addChild(wrom.node);
             self._wroms.push(wrom);
         });
@@ -51,31 +55,52 @@ cc.Class({
     },
 
     update(dt) {
+        if(this._time <= 0) return //结束状态
         // 更新计时器
         this._time -= dt;
-        if (this._time <= 0) {//结算时间
-            this._time = this.getComponent('Config').battleTime;
-        }
-        var t = Math.floor(this._time);
-        this.timerNode.getComponent(cc.Label).string = '0' + Math.floor(t / 60) + ":" + t % 60;
+        if (this._time <= 0) {// 由非结束到结束->结算时间 
+            this._wroms.sort((o1, o2) => { return o1.score - o2.score });
 
-        this._rankTime += dt;
-        if (this._rankTime >= 1) {
-            this._rankTime = 0;
-            // 更新排行榜
-            this._wroms.sort((o1, o2) => { return o1.score - o2.score })
-            for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
-                var w = this._wroms[i];
-                var r = this.rankView.content.children[i];
-                if(w){
-                    r.active = true;
-                    r.getChildByName('name').getComponent(cc.Label).string = w.nameLabel.string;
-                    r.getChildByName('score').getComponent(cc.Label).string = w.score + 1;
-                } else {
-                    r.active = false;
+            let settlenode = cc.instantiate(this.settlePrefab);
+            settlenode.getComponent('SettlePanel').setRanker(this._wroms);
+            settlenode.x = 0;
+            settlenode.y = 0;
+            this.node.addChild(settlenode);
+            return
+        } else {
+            var t = Math.floor(this._time);
+            this.timerNode.getComponent(cc.Label).string = ("0" + Math.floor(t/60)).substr(-2)+":"+ ("0" + Math.floor(t%60)).substr(-2);
+            
+            this._rankTime += dt;
+            if (this._rankTime >= 1) {
+                this._rankTime = 0;
+                // 更新排行榜
+                this._wroms.sort((o1, o2) => { return o1.score - o2.score })
+                for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
+                    var w = this._wroms[i];
+                    var r = this.rankView.content.children[i];
+                    if(w){
+                        r.active = true;
+                        r.getChildByName('name').getComponent(cc.Label).string = w.nameLabel.string;
+                        r.getChildByName('score').getComponent(cc.Label).string = w.score + 1;
+                    } else {
+                        r.active = false;
+                    }
                 }
             }
         }
+    },
+
+    newBattle(){
+        this._time = this.getComponent('Config').battleTime;
+        for(var i=0;i < this._wroms.length; ++i){
+            var w = this._wroms[i];
+            if(w){
+                this._wroms[i].score = 0;
+                this._wroms[i].rebirth();
+            }
+        }
+        this.map.reset()
     },
 
     pickRandomPosition() {

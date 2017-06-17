@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "FadeIn",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.8333333333333334,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 64
+        },
+        {
+          "frame": 0.2833333333333333,
+          "value": 128
+        },
+        {
+          "frame": 0.8333333333333334,
+          "value": 255
+        }
+      ]
+    }
+  },
+  "events": []
+}

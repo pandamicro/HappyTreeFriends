@@ -1310,13 +1310,17 @@
       "__id__": 11
     },
     "_time": 0,
+    "_running": true,
     "rankView": {
       "__id__": 18
     },
     "rankPrefab": {
       "__uuid__": "eddc9200-af73-4263-b829-b07dcc4ed92d"
     },
-    "_rankTime": 0
+    "_rankTime": 0,
+    "settlePrefab": {
+      "__uuid__": "c2a96a23-d302-463d-8303-df431e894521"
+    }
   },
   {
     "__type__": "69d14vQDQBJf5XNxTzlvG6h",

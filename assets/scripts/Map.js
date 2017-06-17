@@ -87,6 +87,10 @@ cc.Class({
         }
     },
 
+    reset:function(){
+
+    },
+
     // called every frame, uncomment this function to activate update callback
     update (dt) {
         this._timer += dt;

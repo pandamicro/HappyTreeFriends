@@ -1,0 +1,86 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "WordsShaked",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.65,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "scaleX": [
+        {
+          "frame": 0,
+          "value": 1.1
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 1
+        }
+      ],
+      "scaleY": [
+        {
+          "frame": 0,
+          "value": 1.1
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 1
+        }
+      ],
+      "x": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 0
+        },
+        {
+          "frame": 0.26666666666666666,
+          "value": 0
+        },
+        {
+          "frame": 0.38333333333333336,
+          "value": 5
+        },
+        {
+          "frame": 0.4666666666666667,
+          "value": -4
+        },
+        {
+          "frame": 0.55,
+          "value": 3
+        },
+        {
+          "frame": 0.65,
+          "value": -3
+        }
+      ],
+      "y": [
+        {
+          "frame": 0,
+          "value": 128
+        },
+        {
+          "frame": 0.16666666666666666,
+          "value": 78
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "frame": 0.5666666666666667,
+      "func": "",
+      "params": []
+    },
+    {
+      "frame": 0.5666666666666667,
+      "func": "",
+      "params": []
+    }
+  ]
+}
