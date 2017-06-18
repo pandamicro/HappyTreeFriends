@@ -79,7 +79,7 @@ cc.Class({
         this.rankView.content.removeAllChildren();
         for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
             var r = cc.instantiate(this.rankPrefab);
-            r.y = - 25 - r.height * i;
+            r.y = - 10 - r.height / 2 - r.height * i;
             r.getChildByName('rank').getComponent(cc.Label).string = i + 1;
             r.active = false;
             this.rankView.content.addChild(r);
@@ -138,7 +138,7 @@ cc.Class({
                 r.getChildByName('name').getComponent(cc.Label).string = w.nameLabel.string;
                 r.getChildByName('score').getComponent(cc.Label).string = w.score + 1;
             } else {
-                r.active = false;
+                // r.active = false;
             }
         }
     },

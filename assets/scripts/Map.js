@@ -90,6 +90,7 @@ cc.Class({
     },
 
     recover:function(count){
+        count = Math.min(count, this._emptyBlocks.length)
         for (var i = 0; i < count; ++i) {
             var index = (this._emptyBlocks.length * Math.random()) | 0;
             this.growBlock(this._emptyBlocks[index]);
