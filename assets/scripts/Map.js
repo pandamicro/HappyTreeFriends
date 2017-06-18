@@ -89,6 +89,16 @@ cc.Class({
         }
     },
 
+    recover:function(count){
+        count = Math.min(count, this._emptyBlocks.length)
+        for (var i = 0; i < count; ++i) {
+            var index = (this._emptyBlocks.length * Math.random()) | 0;
+            this.growBlock(this._emptyBlocks[index]);
+            this._emptyBlocks[index] = this._emptyBlocks[this._emptyBlocks.length - 1];
+            this._emptyBlocks.length--;
+        }
+    },
+
     reset:function () {
         for (var i = 0; i < this._emptyBlocks.length; ++i){
             this.growBlock(this._emptyBlocks[i]);
@@ -102,12 +112,7 @@ cc.Class({
         if (this._timer > this._config.growRate) {
             this._timer = 0;
             if (this._emptyBlocks.length / (this._rows  * this._cols) > this._config.beginGrow) {
-                for (var i = 0; i < this._config.growCount; ++i) {
-                    var index = (this._emptyBlocks.length * Math.random()) | 0;
-                    this.growBlock(this._emptyBlocks[index]);
-                    this._emptyBlocks[index] = this._emptyBlocks[this._emptyBlocks.length - 1];
-                    this._emptyBlocks.length--;
-                }
+                this.recover(this._config.growCount);
             }
         }
     },

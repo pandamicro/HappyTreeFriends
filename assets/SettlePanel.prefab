@@ -205,7 +205,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 450,
+      "width": 214.85,
       "height": 100
     },
     "_rotationX": 0,
@@ -237,10 +237,12 @@
     "_fontSize": 90,
     "_lineHeight": 100,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "2ff7722b-5e70-4a3a-9f6e-802385f74d7d"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "梦幻大菠萝",
+    "_N$string": "diablo",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -313,7 +315,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 300,
+      "width": 149.62,
       "height": 60
     },
     "_rotationX": 0,
@@ -345,10 +347,12 @@
     "_fontSize": 60,
     "_lineHeight": 60,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "2ff7722b-5e70-4a3a-9f6e-802385f74d7d"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "暗黑草薙京",
+    "_N$string": "naruto",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -421,7 +425,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
+      "width": 93.07,
       "height": 50
     },
     "_rotationX": 0,
@@ -453,10 +457,12 @@
     "_fontSize": 50,
     "_lineHeight": 50,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "2ff7722b-5e70-4a3a-9f6e-802385f74d7d"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "加百列",
+    "_N$string": "cercy",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -526,7 +532,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22.25,
+      "width": 19.61,
       "height": 40
     },
     "_rotationX": 0,
@@ -558,8 +564,10 @@
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "2ff7722b-5e70-4a3a-9f6e-802385f74d7d"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "5",
     "_N$horizontalAlign": 1,
