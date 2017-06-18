@@ -169,7 +169,7 @@ cc.Class({
         this.graveyard.addChild(rip);
 
         // 吸收效果
-        for (var i = 0; i < 10; ++i) {
+        for (var i = 0; i < 20; ++i) {
             // 虫子中心 创建N个方块 爆炸
             var block = this._blockpool.get() || cc.instantiate(this.map.blockPrefab);
             block.x = wormnode.x;
