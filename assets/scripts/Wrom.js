@@ -67,6 +67,7 @@ cc.Class({
     },
 
     onDisable () {
+        this.netPlayer.sendCmd('waitForNextGame');
         this.netPlayer.removeAllListeners();
         this._inited = false;
     },

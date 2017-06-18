@@ -45,15 +45,12 @@ cc.Class({
     levelup () {
         this.level++;
         if (this.level === 5) {
+            this.display.parent = null;
+            this.owner.node.removeComponent(this);
             this.owner.die();
         }
         else {
             this.animState.speed = this.level;
         }
-    },
-
-    onDisable () {
-        this.display.parent = null;
-        this.unscheduleAllCallbacks();
     }
 });

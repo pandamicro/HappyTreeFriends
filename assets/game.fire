@@ -290,7 +290,7 @@
     "growCount": 10,
     "initFruitCount": 5,
     "maxFruitCount": 8,
-    "fruitGenerateFreq": 1,
+    "fruitGenerateFreq": 5,
     "fruitCollisionSeuil": 40,
     "battleTime": 180,
     "rankSize": 5,
