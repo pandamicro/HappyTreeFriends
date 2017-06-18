@@ -9,6 +9,7 @@ cc.Class({
     extends: cc.Component,
     properties: {
         map: Map,
+        fruitsMgr: require('FruitsMgr'),
         wromsNode: cc.Node,
         wromPrefab: cc.Prefab,
         _wroms: null,
@@ -28,6 +29,7 @@ cc.Class({
         this._wroms = {};
         cc.view.enableAntiAlias(false);
         this.initServer();
+        this.fruitsMgr._game = this;
     },
 
     getWrom (netPlayer, name) {
@@ -138,6 +140,7 @@ cc.Class({
                 w.rebirth();
             }
         }
-        this.map.reset()
+        this.map.reset();
+        this.fruitsMgr.reset();
     }
 });

@@ -15,6 +15,7 @@ cc.Class({
         netPlayer: null,
         _game: null,
         _map: null,
+        _fruit: null,
         _config: null,
         _speed: 10,
         _eatTime: 3,
@@ -42,6 +43,7 @@ cc.Class({
         this._playerNameManager = new PlayerNameManager(netPlayer);
         this._game = game;
         this._map = game.map;
+        this._fruit = null;
         this._config = cc.find('Canvas').getComponent('Config');
 
         var rect = this._config.birthRect;
@@ -77,7 +79,7 @@ cc.Class({
         var netPlayer = this.netPlayer;
         netPlayer.on('disconnect', this.handleDisconnection.bind(this));
         netPlayer.on('pad', this.handlePad.bind(this));
-        netPlayer.on('abutton', function() {});
+        netPlayer.on('abutton', this.handleTrigger.bind(this));
         netPlayer.on('show', this.handleShowMsg.bind(this));
         this._playerNameManager.on('setName', this.handleNameMsg.bind(this));
         // this.playerNameManager.on('busy', this.handleBusyMsg.bind(this));
@@ -105,6 +107,12 @@ cc.Class({
 
     handleDisconnection (event) {
         this.node.removeFromParent(true);
+    },
+
+    handleTrigger (event) {
+        if (this._fruit && this._fruit.controlTrigger) {
+            this._fruit.controlTrigger();
+        }
     },
 
     handleShowMsg (event) {
@@ -175,6 +183,7 @@ cc.Class({
     
     rebirth () {
         this.score = 0;
+        this._fruit = null;
         this.netPlayer.sendCmd('start');
     }
 });
