@@ -167,13 +167,17 @@ cc.Class({
     onWromDie(wormnode) {
         // 墓碑效果
         var rip = cc.instantiate(this.ripPrefab);
+        rip.getChildByName('name').getComponent(cc.Label).string = wormnode.getComponent('Wrom').nameLabel.string;
+        rip.getChildByName('cd').getComponent(cc.Label).string = '';
         rip.x = wormnode.x + this.wromsNode.x - this.graveyard.x;
         rip.y = wormnode.y + this.wromsNode.y - this.graveyard.y;
         var action = cc.moveTo(1, rip.x, 0);
         action.easing(cc.easeCubicActionIn());
         rip.runAction(cc.sequence(
                 action,
-                cc.callFunc(()=>{ cc.audioEngine.play(this.fallAudio, false, 2) }, this)
+                cc.callFunc(()=>{ 
+                    cc.audioEngine.play(this.fallAudio, false, 2);
+                }, this)
             ));
         this.graveyard.addChild(rip);
 

@@ -223,7 +223,7 @@ cc.Class({
         if (this.parent == null)
             this.node.parent = this._game.wromsNode;
 
-        this._fruit = null;
+        this.removeFruit();
 
         var rect = this._config.birthRect;
         this.node.x = rect.x + (Math.random() * rect.width) | 0;
