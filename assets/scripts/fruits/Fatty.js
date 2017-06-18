@@ -11,7 +11,7 @@ cc.Class({
         this.node.scaleX = this.node.scaleY = 1.8;
         this.owner.eatRadius = 20;
 
-        this.scheduleOnce(this.end, 15);
+        this.scheduleOnce(this.end, 12);
     },
 
     end () {
