@@ -69,7 +69,6 @@ cc.Class({
     },
 
     onEnable() {
-        this.score = 0;
         this._speed = this._config.defaultSpeed;
         this._eatTime = this._config.eatTime;
         this._orientation = 0;
@@ -190,7 +189,7 @@ cc.Class({
             this._timer += dt;
             if (this._timer > this._eatTime) {
                 var ate = this._map.eatBlock(this.node.x, this.node.y, this.eatRadius);
-                if (ate) this.score++;
+                this.score += ate;
                 this._timer = 0;
                 this._eatTime = this._config.eatTime + ((Math.random() * 5 - 2) | 0) / 100;
             }
@@ -212,7 +211,9 @@ cc.Class({
         this.node.parent = null;
         this.deadTime = 0;
         this._game.onWromDie(this.node);
-        this._map.delayRecover(1, this._config.recoverOnDeath * this.score);
+        var lost = this._config.recoverOnDeath * this.score;
+        this._score -= lost;
+        this._map.delayRecover(1, lost);
     },
 
     isdead() {

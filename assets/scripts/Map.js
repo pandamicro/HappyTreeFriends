@@ -70,6 +70,7 @@ cc.Class({
         var col = Math.round(x / this.blockWidth);
         var row = this._rows - 1 - Math.floor(y / this.blockHeight);
         var i, block;
+        var count = 0;
 
         if (radius > 0) {
             var nr = ((radius / this.blockHeight) | 0);
@@ -86,6 +87,7 @@ cc.Class({
                         block.parent = null;
                         this._emptyBlocks.push(i);
                         datas[i] = 0;
+                        count++;
                     }
                 }
             }
@@ -97,9 +99,9 @@ cc.Class({
             block.parent = null;
             this._emptyBlocks.push(i);
             datas[i] = 0;
-            return true;
+            count++;
         }
-        return false;
+        return count;
     },
 
     growBlock: function (i) {

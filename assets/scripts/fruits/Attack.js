@@ -50,7 +50,7 @@ cc.Class({
     // use this for initialization
     onEnable () {
         this.owner = this.node.getComponent('Wrom');
-        this.owner.speed = this.owner._config.defaultSpeed * 2;
+        this.owner._speed = this.owner._config.defaultSpeed * 1.5;
         this.owner.attacking = true;
 
         if (this.prefab) {
@@ -67,7 +67,7 @@ cc.Class({
         this.display.stopAllActions();
         this.display.parent = null;
         if (this.owner){
-            this.owner.speed = this.owner._config.defaultSpeed;
+            this.owner._speed = this.owner._config.defaultSpeed;
             this.owner.attacking = false;
             this.owner.removeFruit();
         }

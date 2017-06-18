@@ -298,7 +298,7 @@
       "x": 100,
       "y": 200,
       "width": 1400,
-      "height": 1000
+      "height": 900
     },
     "growRate": 1,
     "beginGrow": 0.1,
