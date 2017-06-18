@@ -21,11 +21,14 @@ cc.Class({
         rankView: { default: null, type: cc.ScrollView },
         rankPrefab: { default: null, type: cc.Prefab },
         _rankTime: 0,
-        
+
         settlePrefab: cc.Prefab,
 
-        graveyard:cc.Node, //墓地
+        graveyard: cc.Node, //墓地
         ripPrefab: cc.Prefab, //墓碑
+
+        effectNode: cc.Node, //特效层
+        _blockpool: null, // 方块池
     },
 
     onLoad() {
@@ -33,14 +36,15 @@ cc.Class({
         cc.view.enableAntiAlias(false);
         this.initServer();
         this.fruitsMgr._game = this;
+        this._blockpool = new cc.NodePool();
     },
 
-    getWrom (netPlayer, name) {
+    getWrom(netPlayer, name) {
         var wrom = this._wroms[name];
         if (wrom && wrom.isConnected()) {
             wrom = cc.instantiate(this.wromPrefab).getComponent('Wrom');
             name = name + '2';
-            this._wroms[name] =  wrom;
+            this._wroms[name] = wrom;
         }
         else if (!wrom) {
             wrom = cc.instantiate(this.wromPrefab).getComponent('Wrom');
@@ -54,7 +58,7 @@ cc.Class({
         }
     },
 
-    changeWromName (oldname, name) {
+    changeWromName(oldname, name) {
         var wrom = this._wroms[oldname];
         if (wrom) {
             var existed = this._wroms[name];
@@ -89,7 +93,7 @@ cc.Class({
     },
 
     update(dt) {
-        if(this._time <= 0) return //结束状态
+        if (this._time <= 0) return //结束状态
 
         // 更新计时器
         this._time -= dt;
@@ -97,15 +101,15 @@ cc.Class({
             this.settle()
             return
         }
-    
+
         var t = Math.floor(this._time);
-        this.timerNode.getComponent(cc.Label).string = ("0" + Math.floor(t/60)).substr(-2)+":"+ ("0" + t%60).substr(-2);
+        this.timerNode.getComponent(cc.Label).string = ("0" + Math.floor(t / 60)).substr(-2) + ":" + ("0" + t % 60).substr(-2);
 
         this.updateRank(dt);
         this.rebirth(dt)
     },
 
-    settle(){
+    settle() {
         var names = Object.keys(this._wroms);
         names.sort((o1, o2) => { return this._wroms[o2].score - this._wroms[o1].score });
         for (var i = 0; i < names.length; ++i) {
@@ -121,7 +125,7 @@ cc.Class({
         this.node.addChild(settlenode);
     },
 
-    updateRank(dt){
+    updateRank(dt) {
         this._rankTime += dt;
         if (this._rankTime <= 1) {
             return
@@ -134,7 +138,7 @@ cc.Class({
         for (var i = 0; i < this.getComponent('Config').rankSize; ++i) {
             var w = this._wroms[names[i]];
             var r = this.rankView.content.children[i];
-            if(w){
+            if (w) {
                 r.active = true;
                 r.getChildByName('name').getComponent(cc.Label).string = w.nameLabel.string;
                 r.getChildByName('score').getComponent(cc.Label).string = w.score + 1;
@@ -144,40 +148,65 @@ cc.Class({
         }
     },
 
-    rebirth(dt){
-        for(var name in this._wroms){
+    rebirth(dt) {
+        for (var name in this._wroms) {
             var w = this._wroms[name];
-            if(!w || !w.isdead() || !w.netPlayer.isConnected()) continue;
+            if (!w || !w.isdead() || !w.netPlayer.isConnected()) continue;
             w.deadTime += dt;
-            if(w.deadTime > this.getComponent('Config').rebirthTime)
+            if (w.deadTime > this.getComponent('Config').rebirthTime)
                 w.rebirth();
         }
     },
 
-    createRip(node){
+    onWromDie(wormnode) {
+        // 墓碑效果
         var rip = cc.instantiate(this.ripPrefab);
-        rip.x = node.x + this.wromsNode.x - this.graveyard.x;
-        rip.y = node.y + this.wromsNode.y - this.graveyard.y;
-        var action = cc.moveTo(0.3, rip.x, 0);
+        rip.x = wormnode.x + this.wromsNode.x - this.graveyard.x;
+        rip.y = wormnode.y + this.wromsNode.y - this.graveyard.y;
+        var action = cc.moveTo(1, rip.x, 0);
         action.easing(cc.easeCubicActionIn());
         rip.runAction(action);
         this.graveyard.addChild(rip);
+
+        // 吸收效果
+        for (var i = 0; i < 10; ++i) {
+            // 虫子中心 创建N个方块 爆炸
+            var block = this._blockpool.get() || cc.instantiate(this.map.blockPrefab);
+            block.x = wormnode.x;
+            block.y = wormnode.y;
+            block.anchorX = 0.5;
+            block.anchorY = 0.5;
+            this.effectNode.addChild(block);
+
+            var explore = cc.sequence(
+                cc.moveBy(0.1, 200 - Math.random() * 400, 200 - Math.random() * 400),
+                cc.moveTo(0.8, 800, 53), //树心位置
+                cc.callFunc(this.reuseBlock, this, block)
+            );
+            var turnning = cc.rotateBy(1, 360 + 360 * Math.random());
+            block.runAction(cc.spawn(explore, turnning))
+        }
     },
 
-    doooooom(){
-        for(var name in this._wroms){
+    reuseBlock(block) {
+        block.stopAllActions();
+        this._blockpool.put(block)
+    },
+
+    doooooom() {
+        for (var name in this._wroms) {
             var w = this._wroms[name];
-            if(w){
+            if (w) {
                 w.die();
             }
         }
     },
 
-    newBattle(){
+    newBattle() {
         this._time = this.getComponent('Config').battleTime;
-        for(var name in this._wroms){
+        for (var name in this._wroms) {
             var w = this._wroms[name];
-            if(w){
+            if (w) {
                 w.enabled = true;
                 w.score = 0;
                 w.rebirth();

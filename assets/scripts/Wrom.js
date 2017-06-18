@@ -27,7 +27,7 @@ cc.Class({
         _playerNameManager: null
     },
 
-    onLoad () {
+    onLoad() {
         if (!this._map) {
             this._map = cc.find('Canvas/Map').getComponent('Map');
         }
@@ -38,7 +38,7 @@ cc.Class({
         this.display.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame(frame);
     },
 
-    init (name, netPlayer, game) {
+    init(name, netPlayer, game) {
         this.nameLabel.string = name;
         this.netPlayer = netPlayer;
         this._playerNameManager = new PlayerNameManager(netPlayer);
@@ -54,7 +54,7 @@ cc.Class({
         this.initControl();
     },
 
-    onEnable () {
+    onEnable() {
         this.score = 0;
         this._speed = this._config.defaultSpeed;
         this._eatTime = this._config.eatTime;
@@ -67,13 +67,13 @@ cc.Class({
         }
     },
 
-    onDisable () {
+    onDisable() {
         this.netPlayer.sendCmd('waitForNextGame');
         this.netPlayer.removeAllListeners();
         this._inited = false;
     },
 
-    initControl () {
+    initControl() {
         if (this._inited) {
             return;
         }
@@ -85,11 +85,11 @@ cc.Class({
         netPlayer.on('show', this.handleShowMsg.bind(this));
         this._playerNameManager.on('setName', this.handleNameMsg.bind(this));
         // this.playerNameManager.on('busy', this.handleBusyMsg.bind(this));
-        
+
         this._inited = true;
     },
 
-    handlePad (event) {
+    handlePad(event) {
         if (!event || isNaN(event.radian)) {
             this._moving = false;
             return;
@@ -107,21 +107,21 @@ cc.Class({
         }
     },
 
-    handleDisconnection (event) {
+    handleDisconnection(event) {
         this.node.removeFromParent(true);
     },
 
-    handleTrigger (event) {
+    handleTrigger(event) {
         if (this._fruit && this._fruit.controlTrigger) {
             this._fruit.controlTrigger();
         }
     },
 
-    handleShowMsg (event) {
+    handleShowMsg(event) {
         console.log(event);
     },
 
-    handleNameMsg (name) {
+    handleNameMsg(name) {
         if (name) {
             var oldname = this.nameLabel.string;
             this.nameLabel.string = name;
@@ -129,24 +129,24 @@ cc.Class({
         }
     },
 
-    testControl () {
+    testControl() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, function (event) {
             switch (event.keyCode) {
                 case cc.KEY.up:
-                this._orientation = Math.PI * 90 / 180;
-                break;
+                    this._orientation = Math.PI * 90 / 180;
+                    break;
                 case cc.KEY.down:
-                this._orientation = Math.PI * 270 / 180;
-                break;
+                    this._orientation = Math.PI * 270 / 180;
+                    break;
                 case cc.KEY.left:
-                this._orientation = Math.PI;
-                break;
+                    this._orientation = Math.PI;
+                    break;
                 case cc.KEY.right:
-                this._orientation = 0;
-                break;
+                    this._orientation = 0;
+                    break;
                 default:
-                this._moving = false;
-                return;
+                    this._moving = false;
+                    return;
             }
             if (!this._moving) {
                 this._moving = true;
@@ -159,7 +159,7 @@ cc.Class({
     },
 
     // called every frame, uncomment this function to activate update callback
-    update (dt) {
+    update(dt) {
         if (this._moving) {
             var dx = this._speed * Math.cos(this._orientation);
             var dy = this._speed * Math.sin(this._orientation);
@@ -183,7 +183,7 @@ cc.Class({
         }
     },
 
-    removeFruit () {
+    removeFruit() {
         if (this._fruit)
             this.node.removeComponent(this._fruit);
         this._fruit = null;
@@ -193,21 +193,21 @@ cc.Class({
         this.node.parent = null;
         this.deadTime = 0;
         this.removeFruit();
-        this._game.createRip(this.node);
-        this._map.recover(this._config.recoverOnDeath * this.score);
+        this._game.onWromDie(this.node);
+        this._map.delayRecover(1, this._config.recoverOnDeath * this.score);
     },
 
-    isdead(){
+    isdead() {
         return this.node.parent == null
     },
-    
-    rebirth () {
-        if(this.parent == null)
+
+    rebirth() {
+        if (this.parent == null)
             this.node.parent = this._game.wromsNode;
-        
+
         this.score = 0;
         this._fruit = null;
-        
+
         var rect = this._config.birthRect;
         this.node.x = rect.x + (Math.random() * rect.width) | 0;
         this.node.y = rect.y + (Math.random() * rect.height) | 0;

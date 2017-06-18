@@ -22,8 +22,8 @@ cc.Class({
         this._timer = 0;
 
         this._frames = {
-            1 : this.blockAtlas.getSpriteFrame(1),
-            2 : this.blockAtlas.getSpriteFrame(2)
+            1: this.blockAtlas.getSpriteFrame(1),
+            2: this.blockAtlas.getSpriteFrame(2)
         };
 
         var width = cc.winSize.width,
@@ -33,7 +33,7 @@ cc.Class({
             rows = this._rows = (height / bh) | 0,
             cols = this._cols = (width / bw) | 0;
 
-        this._blocks = new Array( rows * cols );
+        this._blocks = new Array(rows * cols);
         var color = cc.color();
         var i, x, y, block, data, prefab = this.blockPrefab;
         for (var r = 0; r < rows; r++) {
@@ -111,7 +111,7 @@ cc.Class({
         }
     },
 
-    recover:function(count){
+    recover: function (count) {
         count = Math.min(count, this._emptyBlocks.length)
         for (var i = 0; i < count; ++i) {
             var index = (this._emptyBlocks.length * Math.random()) | 0;
@@ -121,19 +121,24 @@ cc.Class({
         }
     },
 
-    reset:function () {
-        for (var i = 0; i < this._emptyBlocks.length; ++i){
+    delayRecover: function (time, count) {
+        var self = this;
+        this.scheduleOnce(() => self.recover(count), time);
+    },
+
+    reset: function () {
+        for (var i = 0; i < this._emptyBlocks.length; ++i) {
             this.growBlock(this._emptyBlocks[i]);
         }
         this._emptyBlocks.length = 0;
     },
 
     // called every frame, uncomment this function to activate update callback
-    update (dt) {
+    update: function (dt) {
         this._timer += dt;
         if (this._timer > this._config.growRate) {
             this._timer = 0;
-            if (this._emptyBlocks.length / (this._rows  * this._cols) > this._config.beginGrow) {
+            if (this._emptyBlocks.length / (this._rows * this._cols) > this._config.beginGrow) {
                 this.recover(this._config.growCount);
             }
         }
