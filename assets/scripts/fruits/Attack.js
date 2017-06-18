@@ -50,7 +50,7 @@ cc.Class({
     // use this for initialization
     onEnable () {
         this.owner = this.node.getComponent('Wrom');
-        this.owner.speed = this.owner._config.defaultSpeed * 1.6;
+        this.owner.speed = this.owner._config.defaultSpeed * 2;
         this.owner.attacking = true;
 
         if (this.prefab) {
