@@ -66,12 +66,34 @@ cc.Class({
         }
     },
 
-    eatBlock: function (x, y, r) {
+    eatBlock: function (x, y, radius) {
         var col = Math.round(x / this.blockWidth);
         var row = this._rows - 1 - Math.floor(y / this.blockHeight);
-        var i = row * this._cols + col;
-        var block = this._blocks[i];
-        if (block) {
+        var i, block;
+
+        if (radius > 0) {
+            var nr = ((radius / this.blockHeight) | 0);
+            var nc = ((radius / this.blockWidth) | 0);
+            var rstart = row - nr, rend = row + nr;
+            for (var r = rstart; r < rend; r++) {
+                var half = nc * (nr - Math.abs(r - row)) / nr;
+                var cstart = col - half;
+                var cend = col + half;
+                for (var c = cstart; c < cend; c++) {
+                    i = r * this._cols + c;
+                    block = this._blocks[i];
+                    if (block && datas[i] > 0) {
+                        block.parent = null;
+                        this._emptyBlocks.push(i);
+                        datas[i] = 0;
+                    }
+                }
+            }
+        }
+
+        i = row * this._cols + col;
+        block = this._blocks[i];
+        if (block && datas[i] > 0) {
             block.parent = null;
             this._emptyBlocks.push(i);
             datas[i] = 0;

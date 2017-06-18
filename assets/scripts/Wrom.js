@@ -60,7 +60,7 @@ cc.Class({
         this._orientation = 0;
         this._moving = false;
 
-        this.testControl();
+        // this.testControl();
         if (this.netPlayer && !this._inited) {
             this.initControl();
         }
@@ -205,6 +205,10 @@ cc.Class({
         var rect = this._config.birthRect;
         this.node.x = rect.x + (Math.random() * rect.width) | 0;
         this.node.y = rect.y + (Math.random() * rect.height) | 0;
+
+        if (!this.enabled) {
+            this.enabled = true;
+        }
 
         this.netPlayer.sendCmd('start');
     }

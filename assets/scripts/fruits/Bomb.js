@@ -60,12 +60,12 @@ cc.Class({
                     var wrom = wroms[name];
                     vec.x = wrom.node.x - x;
                     vec.y = wrom.node.y - y;
-                    if (cc.pLength(vec) < 250) {
+                    if (cc.pLength(vec) < 125) {
                         wrom.die();
                     }
                 }
 
-                this.owner._game.map.eatBlock(x, y, 250);
+                this.owner._game.map.eatBlock(x, y, 125);
             }, this);
         }
         else {
