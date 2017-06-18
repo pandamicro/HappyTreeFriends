@@ -105,8 +105,9 @@ cc.Class({
         var t = Math.floor(this._time);
         this.timerNode.getComponent(cc.Label).string = ("0" + Math.floor(t / 60)).substr(-2) + ":" + ("0" + t % 60).substr(-2);
 
+        this.checkWromAttack();
         this.updateRank(dt);
-        this.rebirth(dt)
+        this.rebirth(dt);
     },
 
     settle() {
@@ -185,6 +186,31 @@ cc.Class({
             );
             var turnning = cc.rotateBy(1, 360 + 360 * Math.random());
             block.runAction(cc.spawn(explore, turnning))
+        }
+    },
+
+    checkWromAttack () {
+        var a, b;
+        var ax, ay, v2 = cc.v2();
+        for (var namea in this._wroms) {
+            a = this._wroms[namea];
+            ax = a.node.x;
+            ay = a.node.y;
+            if (a.attacking) {
+                for (var nameb in this._wroms) {
+                    if (namea === nameb) continue;
+                    b = this._wroms[nameb];
+                    if (!b.enabled || !b.node.activeInHierarchy) continue;
+                    v2.x = b.node.x - ax;
+                    v2.y = b.node.y - ay;
+
+                    if (cc.pLength(v2) > 50) continue;
+                    if (b.attacking) {
+                        a.die();
+                    }
+                    b.die();
+                }
+            }
         }
     },
 

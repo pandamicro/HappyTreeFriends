@@ -40,11 +40,12 @@ var Fruit = require('Fruit');
 
 var Types = [
     require('./fruits/Bomb'),
-    require('./fruits/Fatty')
+    require('./fruits/Fatty'),
+    require('./fruits/Attack')
 ];
 
 var Probability = [
-    0.2, 0.3
+    0.2, 0.3, 1
 ];
 var sum = 0;
 for (var i = 0; i < Probability.length; i++) {

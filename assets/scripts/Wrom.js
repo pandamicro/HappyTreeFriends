@@ -14,6 +14,7 @@ cc.Class({
         atlas: cc.SpriteAtlas,
         netPlayer: null,
         eatRadius: 0,
+        attacking: false,
         _game: null,
         _map: null,
         _fruit: null,
