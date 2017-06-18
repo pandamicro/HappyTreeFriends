@@ -208,6 +208,9 @@ cc.Class({
                     if (b.attacking) {
                         a.die();
                     }
+                    else {
+                        this.fruitsMgr.rob(a, b);
+                    }
                     b.die();
                 }
             }

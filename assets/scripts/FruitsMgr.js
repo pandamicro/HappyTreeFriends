@@ -133,6 +133,16 @@ cc.Class({
         wrom._fruit = ability;
     },
 
+    rob (wromA, wromB) {
+        if (wromB._fruit) {
+            wromA.removeFruit();
+
+            var ability = wromA.node.addComponent(wromB._fruit.constructor);
+            wromA._fruit = ability;
+            wromB.removeFruit();
+        }
+    },
+
     // called every frame, uncomment this function to activate update callback
     update (dt) {
         this._timer -= dt;
