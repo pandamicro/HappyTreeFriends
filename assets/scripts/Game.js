@@ -26,6 +26,10 @@ cc.Class({
 
         graveyard: cc.Node, //墓地
         ripPrefab: cc.Prefab, //墓碑
+        fallAudio: {
+            url: cc.AudioClip,
+            default: null
+        },
 
         effectNode: cc.Node, //特效层
         _blockpool: null, // 方块池
@@ -167,7 +171,10 @@ cc.Class({
         rip.y = wormnode.y + this.wromsNode.y - this.graveyard.y;
         var action = cc.moveTo(1, rip.x, 0);
         action.easing(cc.easeCubicActionIn());
-        rip.runAction(action);
+        rip.runAction(cc.sequence(
+                action,
+                cc.callFunc(()=>{ cc.audioEngine.play(this.fallAudio, false, 2) }, this)
+            ));
         this.graveyard.addChild(rip);
 
         // 吸收效果
@@ -213,6 +220,7 @@ cc.Class({
                         this.fruitsMgr.rob(a, b);
                     }
                     b.die();
+                    cc.audioEngine.play(this.owner.hitAudio, false, 2)
                 }
             }
         }

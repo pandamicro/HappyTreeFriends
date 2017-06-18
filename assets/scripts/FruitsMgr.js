@@ -131,6 +131,7 @@ cc.Class({
 
         var ability = wrom.node.addComponent(fruit.ability);
         wrom._fruit = ability;
+        cc.audioEngine.play(wrom.pickupAudio, false, 2)
     },
 
     rob (wromA, wromB) {

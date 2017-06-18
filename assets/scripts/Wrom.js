@@ -25,7 +25,20 @@ cc.Class({
         _timer: 0,
         _moving: false,
         _inited: false,
-        _playerNameManager: null
+        _playerNameManager: null,
+
+        expAudio: {
+            url: cc.AudioClip,
+            default: null
+        },
+        hitAudio: {
+            url: cc.AudioClip,
+            default: null
+        },
+        pickupAudio: {
+            url: cc.AudioClip,
+            default: null
+        },
     },
 
     onLoad() {

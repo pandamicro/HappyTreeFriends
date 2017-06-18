@@ -286,8 +286,11 @@
       "__uuid__": "53dbec13-ed18-4e91-8bd2-01ba8f386143"
     },
     "netPlayer": null,
+    "eatRadius": 0,
+    "attacking": false,
     "_game": null,
     "_map": null,
+    "_fruit": null,
     "_config": null,
     "_speed": 10,
     "_eatTime": 3,
@@ -295,7 +298,16 @@
     "_timer": 0,
     "_moving": false,
     "_inited": false,
-    "_playerNameManager": null
+    "_playerNameManager": null,
+    "expAudio": {
+      "__uuid__": "8b42101e-1305-4ac4-becf-628f080eb487"
+    },
+    "hitAudio": {
+      "__uuid__": "dab7bac5-f7da-4bbf-82bb-efad9aafdd13"
+    },
+    "pickupAudio": {
+      "__uuid__": "3f2e3226-c1db-4ea2-9afd-eff3c83a824f"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

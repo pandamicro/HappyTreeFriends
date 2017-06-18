@@ -49,6 +49,7 @@ cc.Class({
             this.unschedule(this.levelup);
             this.owner.enabled = false;
             var animState = this.display.getComponent(cc.Animation).play('explode');
+             cc.audioEngine.play(this.owner.expAudio, false, 2)
             animState.on('finished', function () {
                 this.display.parent = null;
                 var x = this.owner.node.x;
