@@ -174,7 +174,7 @@ cc.Class({
 
             this._timer += dt;
             if (this._timer > this._eatTime) {
-                var ate = this._map.eatBlock(this.node);
+                var ate = this._map.eatBlock(this.node.x, this.node.y);
                 if (ate) this.score++;
                 this._timer = 0;
                 this._eatTime = this._config.eatTime + ((Math.random() * 5 - 2) | 0) / 100;
@@ -185,6 +185,8 @@ cc.Class({
     die() {
         this.node.parent = null;
         this.deadTime = 0;
+        if (this._fruit)
+            this.node.removeComponent(this._fruit);
         this._game.createRip(this.node);
         this._map.recover(this._config.recoverOnDeath * this.score);
     },

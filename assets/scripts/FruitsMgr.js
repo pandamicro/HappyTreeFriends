@@ -150,6 +150,10 @@ cc.Class({
 
             for (var name in wroms) {
                 var wrom = wroms[name];
+                if (wrom._fruit) {
+                    continue;
+                }
+
                 vector.x = wrom.node.x - node.x;
                 vector.y = wrom.node.y - node.y;
                 if (cc.pLength(vector) < seuil) {

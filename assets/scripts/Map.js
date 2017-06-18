@@ -66,9 +66,9 @@ cc.Class({
         }
     },
 
-    eatBlock: function (wrom) {
-        var col = Math.round(wrom.x / this.blockWidth);
-        var row = this._rows - 1 - Math.floor(wrom.y / this.blockHeight);
+    eatBlock: function (x, y, r) {
+        var col = Math.round(x / this.blockWidth);
+        var row = this._rows - 1 - Math.floor(y / this.blockHeight);
         var i = row * this._cols + col;
         var block = this._blocks[i];
         if (block) {

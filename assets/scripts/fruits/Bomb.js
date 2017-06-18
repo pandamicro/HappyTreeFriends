@@ -45,9 +45,28 @@ cc.Class({
     levelup () {
         this.level++;
         if (this.level === 5) {
-            this.display.parent = null;
-            this.owner.node.removeComponent(this);
-            this.owner.die();
+            this.unschedule(this.levelup);
+            this.owner.enabled = false;
+            var animState = this.display.getComponent(cc.Animation).play('explode');
+            animState.on('finished', function () {
+                this.display.parent = null;
+                var x = this.owner.node.x;
+                var y = this.owner.node.y;
+                var wroms = this.owner._game._wroms;
+                this.owner.die();
+
+                var vec = cc.v2();
+                for (var name in wroms) {
+                    var wrom = wroms[name];
+                    vec.x = wrom.node.x - x;
+                    vec.y = wrom.node.y - y;
+                    if (cc.pLength(vec) < 250) {
+                        wrom.die();
+                    }
+                }
+
+                this.owner._game.map.eatBlock(x, y, 250);
+            }, this);
         }
         else {
             this.animState.speed = this.level;
