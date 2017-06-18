@@ -191,6 +191,7 @@ cc.Class({
     },
 
     die() {
+        this.netPlayer.sendCmd('died');
         this.node.parent = null;
         this.deadTime = 0;
         this.removeFruit();
@@ -206,7 +207,6 @@ cc.Class({
         if (this.parent == null)
             this.node.parent = this._game.wromsNode;
 
-        this.score = 0;
         this._fruit = null;
 
         var rect = this._config.birthRect;

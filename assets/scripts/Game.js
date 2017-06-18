@@ -154,8 +154,9 @@ cc.Class({
             var w = this._wroms[name];
             if (!w || !w.isdead() || !w.netPlayer.isConnected()) continue;
             w.deadTime += dt;
-            if (w.deadTime > this.getComponent('Config').rebirthTime)
+            if (w.deadTime > this.getComponent('Config').rebirthTime) {
                 w.rebirth();
+            }
         }
     },
 
