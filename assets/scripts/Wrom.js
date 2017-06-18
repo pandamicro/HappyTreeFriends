@@ -13,6 +13,7 @@ cc.Class({
         nameLabel: cc.Label,
         atlas: cc.SpriteAtlas,
         netPlayer: null,
+        eatRadius: 0,
         _game: null,
         _map: null,
         _fruit: null,
@@ -174,7 +175,7 @@ cc.Class({
 
             this._timer += dt;
             if (this._timer > this._eatTime) {
-                var ate = this._map.eatBlock(this.node.x, this.node.y);
+                var ate = this._map.eatBlock(this.node.x, this.node.y, this.eatRadius);
                 if (ate) this.score++;
                 this._timer = 0;
                 this._eatTime = this._config.eatTime + ((Math.random() * 5 - 2) | 0) / 100;
@@ -182,11 +183,16 @@ cc.Class({
         }
     },
 
+    removeFruit () {
+        if (this._fruit)
+            this.node.removeComponent(this._fruit);
+        this._fruit = null;
+    },
+
     die() {
         this.node.parent = null;
         this.deadTime = 0;
-        if (this._fruit)
-            this.node.removeComponent(this._fruit);
+        this.removeFruit();
         this._game.createRip(this.node);
         this._map.recover(this._config.recoverOnDeath * this.score);
     },

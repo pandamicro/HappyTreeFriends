@@ -40,10 +40,11 @@ var Fruit = require('Fruit');
 
 var Types = [
     require('./fruits/Bomb'),
+    require('./fruits/Fatty')
 ];
 
 var Probability = [
-    0.5,
+    0.2, 0.3
 ];
 var sum = 0;
 for (var i = 0; i < Probability.length; i++) {
@@ -129,7 +130,6 @@ cc.Class({
 
         var ability = wrom.node.addComponent(fruit.ability);
         wrom._fruit = ability;
-        ability.owner = wrom;
     },
 
     // called every frame, uncomment this function to activate update callback

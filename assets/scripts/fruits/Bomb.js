@@ -11,6 +11,7 @@ cc.Class({
     },
 
     onLoad () {
+        this.owner = this.node.getComponent('Wrom');
         var self = this;
         cc.loader.loadRes('fruit/bomb', function (err, prefab) {
             self.prefab = prefab;
