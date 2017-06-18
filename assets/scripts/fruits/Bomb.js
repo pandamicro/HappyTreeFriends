@@ -45,7 +45,7 @@ cc.Class({
     levelup () {
         this.level++;
         if (this.level === 5) {
-            this.owner.died();
+            this.owner.die();
         }
         else {
             this.animState.speed = this.level;
