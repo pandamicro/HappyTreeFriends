@@ -43,6 +43,11 @@ cc.Class({
         this.schedule(this.levelup, 3, 3, 3);
     },
 
+    end () {
+        this.unschedule(this.levelup);
+        this.display.parent = null;
+    },
+
     levelup () {
         this.level++;
         if (this.level === 5) {

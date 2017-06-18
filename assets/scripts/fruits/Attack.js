@@ -66,9 +66,11 @@ cc.Class({
     end () {
         this.display.stopAllActions();
         this.display.parent = null;
-        this.owner.speed = this.owner._config.defaultSpeed;
-        this.owner.attacking = false;
-        this.owner.removeFruit();
+        if (this.owner){
+            this.owner.speed = this.owner._config.defaultSpeed;
+            this.owner.attacking = false;
+            this.owner.removeFruit();
+        }
     }
 
     // called every frame, uncomment this function to activate update callback

@@ -307,7 +307,7 @@
     "battleTime": 120,
     "rankSize": 5,
     "rebirthTime": 5,
-    "recoverOnDeath": 0.8
+    "recoverOnDeath": 0.3
   },
   {
     "__type__": "cc.Node",

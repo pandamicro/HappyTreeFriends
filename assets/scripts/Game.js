@@ -202,9 +202,9 @@ cc.Class({
         var ax, ay, v2 = cc.v2();
         for (var namea in this._wroms) {
             a = this._wroms[namea];
-            ax = a.node.x;
-            ay = a.node.y;
-            if (a.attacking) {
+            if (a.attacking && a.enabled && a.node.activeInHierarchy) {
+                ax = a.node.x;
+                ay = a.node.y;
                 for (var nameb in this._wroms) {
                     if (namea === nameb) continue;
                     b = this._wroms[nameb];
@@ -215,12 +215,13 @@ cc.Class({
                     if (cc.pLength(v2) > 50) continue;
                     if (b.attacking) {
                         a.die();
+                        b.die();
+                        break;
                     }
                     else {
                         this.fruitsMgr.rob(a, b);
+                        b.die();
                     }
-                    b.die();
-                    cc.audioEngine.play(this.owner.hitAudio, false, 2)
                 }
             }
         }

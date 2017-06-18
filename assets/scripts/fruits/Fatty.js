@@ -16,8 +16,11 @@ cc.Class({
 
     end () {
         this.node.scaleX = this.node.scaleY = 1;
-        this.owner.eatRadius = 0;
-        this.owner.removeFruit();
+        if (this.owner) {
+            this.owner.eatRadius = 0;
+            this.owner.removeFruit();
+            this.owner = null;
+        }
     }
 
     // called every frame, uncomment this function to activate update callback

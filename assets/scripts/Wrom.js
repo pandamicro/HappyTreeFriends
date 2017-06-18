@@ -76,7 +76,7 @@ cc.Class({
         this._moving = false;
 
         // this.testControl();
-        if (this.netPlayer && !this._inited) {
+        if (this.netPlayer && this.netPlayer.isConnected() && !this._inited) {
             this.initControl();
         }
     },
@@ -198,16 +198,19 @@ cc.Class({
     },
 
     removeFruit() {
-        if (this._fruit)
-            this.node.removeComponent(this._fruit);
-        this._fruit = null;
+        if (this._fruit) {
+            var fruit = this._fruit;
+            this._fruit = null;
+            fruit.end();
+            this.node.removeComponent(fruit);
+        }
     },
 
     die() {
+        this.removeFruit();
         this.netPlayer.sendCmd('died');
         this.node.parent = null;
         this.deadTime = 0;
-        this.removeFruit();
         this._game.onWromDie(this.node);
         this._map.delayRecover(1, this._config.recoverOnDeath * this.score);
     },
@@ -228,6 +231,9 @@ cc.Class({
 
         if (!this.enabled) {
             this.enabled = true;
+        }
+        else if (this.netPlayer && this.netPlayer.isConnected() && !this._inited) {
+            this.initControl();
         }
 
         this.netPlayer.sendCmd('start');
