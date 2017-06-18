@@ -307,7 +307,7 @@
     "maxFruitCount": 8,
     "fruitGenerateFreq": 5,
     "fruitCollisionSeuil": 40,
-    "battleTime": 30,
+    "battleTime": 90,
     "rankSize": 5,
     "rebirthTime": 5,
     "recoverOnDeath": 0.3

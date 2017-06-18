@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "cd",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Label": {
+        "string": [
+          {
+            "frame": 0,
+            "value": "5"
+          },
+          {
+            "frame": 1,
+            "value": "4"
+          },
+          {
+            "frame": 2,
+            "value": "3"
+          },
+          {
+            "frame": 3,
+            "value": "2"
+          },
+          {
+            "frame": 4,
+            "value": "1"
+          },
+          {
+            "frame": 5,
+            "value": ""
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
