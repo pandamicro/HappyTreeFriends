@@ -138,7 +138,7 @@ cc.Class({
                 r.getChildByName('name').getComponent(cc.Label).string = w.nameLabel.string;
                 r.getChildByName('score').getComponent(cc.Label).string = w.score + 1;
             } else {
-                // r.active = false;
+                r.active = false;
             }
         }
     },
