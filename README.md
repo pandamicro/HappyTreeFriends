@@ -20,6 +20,11 @@
 ![](./screenshot/show1.jpg)
 ![](./screenshot/show2.jpg)
 
+## 试玩下载
+
+- Mac OS X ：https://pan.baidu.com/s/1i5uZ9bR （可能需要在 Mac OS 上[允许来自身份不明开发者的应用](https://support.apple.com/kb/PH25088?locale=zh_CN&viewlocale=zh_CN)）
+- Windows ：尚未打包
+
 ## 技术框架
 
 1. 游戏框架 [Cocos Creator](http://www.cocos.com/creator)
@@ -37,7 +42,7 @@
 -assets/scripts/lib
     |-hft.js HappyFunTimes 客户端库
     |-sample-ui.js HappyFunTimes 界面相关，需要设为插件导入
--build/web-mobile Creator 构建目标，请勿更换构建目标路径
+-web-mobile Creator 构建目标，请勿更换构建目标路径
 -build-templates/web-mobile/main.js 修改了资源索引的路径
 -css/ HappyFunTimes 界面 css
 -hft-sample-ui/ 使用这个文件夹覆盖到 node modules 目录下可以支持手机端的 360 度移动，否则只支持四向移动

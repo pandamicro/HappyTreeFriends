@@ -1,15 +1,17 @@
 {
-  "name": "hft-simple",
-  "productName": "happyfuntimes simple example",
-  "description": "A simple example",
+  "name": "HappyTreeFriends",
+  "productName": "Happy Tree Friends",
+  "description": "A local party game made during CiGA GameJam 2017 Xiamen station",
   "private": false,
-  "version": "0.0.7",
+  "version": "0.4.0",
   "build": {
-    "appId": "com.greggman.hftSimple",
+    "appId": "org.cocos2dx.HappyTreeFriends",
     "asar": false,
     "mac": {
       "category": "public.app-category.games"
-    }
+    },
+    "postinstall": "install-app-deps",
+    "forceCodeSigning": true
   },
   "main": "main.js",
   "scripts": {
@@ -20,19 +22,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greggman/hft-simple.git"
+    "url": "git+https://github.com/pandamicro/HappyTreeFriends.git"
   },
   "keywords": [
     "local",
     "multiplayer",
-    "game"
+    "game",
+    "GameJam"
   ],
-  "author": "Gregg Tavares",
-  "license": "MIT",
+  "author": "Pandamicro",
+  "license": "MIT", 
   "bugs": {
-    "url": "https://github.com/greggman/hft-simple/issues"
+    "url": "https://github.com/pandamicro/HappyTreeFriends/issues"
   },
-  "homepage": "https://github.com/greggman/hft-simple#readme",
+  "homepage": "https://github.com/pandamicro/HappyTreeFriends#readme",
   "dependencies": {
     "happyfuntimes": "^0.2.1",
     "hft-game-utils": "^1.0.0",

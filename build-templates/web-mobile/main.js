@@ -84,8 +84,8 @@
 
             // init assets
             cc.AssetLibrary.init({
-                libraryPath: 'build/web-mobile/res/import',
-                rawAssetsBase: 'build/web-mobile/res/raw-',
+                libraryPath: 'web-mobile/res/import',
+                rawAssetsBase: 'web-mobile/res/raw-',
                 rawAssets: settings.rawAssets,
                 packedAssets: settings.packedAssets
             });
@@ -131,7 +131,7 @@
             jsList = jsList.concat(['jsb_anysdk.js', 'jsb_anysdk_constants.js']);
         }
 
-        jsList = jsList.map(function (x) { return 'build/web-mobile/src/' + x; });
+        jsList = jsList.map(function (x) { return 'web-mobile/src/' + x; });
 
         var option = {
             //width: width,
@@ -156,7 +156,7 @@
 
         var cocos2d = document.createElement('script');
         cocos2d.async = true;
-        cocos2d.src = window._CCSettings.debug ? 'build/web-mobile/cocos2d-js.js' : 'build/web-mobile/cocos2d-js-min.js';
+        cocos2d.src = window._CCSettings.debug ? 'web-mobile/cocos2d-js.js' : 'web-mobile/cocos2d-js-min.js';
 
         var engineLoaded = function () {
             document.body.removeChild(cocos2d);

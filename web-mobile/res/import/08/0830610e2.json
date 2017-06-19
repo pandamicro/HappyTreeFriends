@@ -1,0 +1,143 @@
+[
+  {
+    "__type__": "cc.SpriteFrame",
+    "content": {
+      "name": "bomb",
+      "texture": "16e93c2d-94ce-46e0-9425-36f122d98d6d",
+      "rect": [
+        0,
+        0,
+        31,
+        32
+      ],
+      "offset": [
+        -0.5,
+        0
+      ],
+      "originalSize": [
+        32,
+        32
+      ]
+    }
+  },
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "bomb",
+    "_duration": 0.5,
+    "wrapMode": 2,
+    "curveData": {
+      "props": {
+        "scaleX": [
+          {
+            "frame": 0,
+            "value": 1
+          },
+          {
+            "frame": 0.25,
+            "value": 2
+          },
+          {
+            "frame": 0.5,
+            "value": 1
+          }
+        ],
+        "scaleY": [
+          {
+            "frame": 0,
+            "value": 1
+          },
+          {
+            "frame": 0.25,
+            "value": 2
+          },
+          {
+            "frame": 0.5,
+            "value": 1
+          }
+        ],
+        "color": [
+          {
+            "frame": 0,
+            "value": {
+              "__type__": "cc.Color",
+              "r": 255,
+              "g": 255,
+              "b": 255
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__type__": "cc.Color",
+              "r": 255
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__type__": "cc.Color",
+              "r": 255,
+              "g": 255,
+              "b": 255
+            }
+          }
+        ]
+      }
+    }
+  },
+  [
+    {
+      "__type__": "cc.Prefab",
+      "_name": "bomb",
+      "data": {
+        "__id__": 1
+      },
+      "asyncLoadAssets": false
+    },
+    {
+      "__type__": "cc.Node",
+      "_name": "bomb",
+      "_components": [
+        {
+          "__type__": "cc.Sprite",
+          "node": {
+            "__id__": 1
+          },
+          "_spriteFrame": {
+            "__uuid__": "087fec73-9b02-4631-adab-7027d9b3c928"
+          }
+        },
+        {
+          "__type__": "cc.Animation",
+          "node": {
+            "__id__": 1
+          },
+          "_defaultClip": {
+            "__uuid__": "40c0f6b3-8fdb-4ea8-8250-3680ea240975"
+          },
+          "_clips": [
+            {
+              "__uuid__": "40c0f6b3-8fdb-4ea8-8250-3680ea240975"
+            },
+            {
+              "__uuid__": "10b07354-408f-4460-8c43-38d2152f7fc6"
+            }
+          ],
+          "playOnLoad": true
+        }
+      ],
+      "_prefab": {
+        "__type__": "cc.PrefabInfo",
+        "root": {
+          "__id__": 1
+        },
+        "fileId": "40cd51YE6VCEKnFu1Ld592r"
+      },
+      "_contentSize": {
+        "__type__": "cc.Size",
+        "width": 31,
+        "height": 32
+      }
+    }
+  ]
+]

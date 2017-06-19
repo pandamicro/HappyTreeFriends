@@ -1,0 +1,158 @@
+[
+  {
+    "__type__": "cc.SpriteFrame",
+    "content": {
+      "name": "1",
+      "texture": "f15ccb4b-514a-4e65-b52c-37d2e95bf0a6",
+      "rect": [
+        0,
+        0,
+        20,
+        20
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        20,
+        20
+      ]
+    }
+  },
+  [
+    {
+      "__type__": "cc.SceneAsset",
+      "_name": "test",
+      "scene": {
+        "__id__": 1
+      },
+      "asyncLoadAssets": false
+    },
+    {
+      "__type__": "cc.Scene",
+      "_name": "New Node",
+      "_children": [
+        {
+          "__id__": 2
+        },
+        {
+          "__id__": 3
+        },
+        {
+          "__id__": 4
+        }
+      ],
+      "_anchorPoint": {
+        "__type__": "cc.Vec2"
+      },
+      "autoReleaseAssets": false
+    },
+    {
+      "__type__": "cc.Node",
+      "_name": "Canvas",
+      "_parent": {
+        "__id__": 1
+      },
+      "_components": [
+        {
+          "__type__": "cc.Canvas",
+          "node": {
+            "__id__": 2
+          }
+        }
+      ],
+      "_id": "256ee8kMgJKk7ONp/NJ826e",
+      "_position": {
+        "__type__": "cc.Vec2",
+        "x": 480,
+        "y": 320
+      }
+    },
+    {
+      "__type__": "cc.Node",
+      "_name": "1",
+      "_parent": {
+        "__id__": 1
+      },
+      "_components": [
+        {
+          "__type__": "cc.Sprite",
+          "node": {
+            "__id__": 3
+          },
+          "_spriteFrame": {
+            "__uuid__": "05e1c447-d0d2-44bf-a7c9-65596d905d30"
+          }
+        }
+      ],
+      "_id": "404aakf+zVLophXEqycrsNN",
+      "_color": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 174,
+        "b": 99
+      },
+      "_contentSize": {
+        "__type__": "cc.Size",
+        "width": 20,
+        "height": 20
+      },
+      "_position": {
+        "__type__": "cc.Vec2",
+        "x": 413,
+        "y": 309
+      }
+    },
+    {
+      "__type__": "cc.Node",
+      "_name": "2",
+      "_parent": {
+        "__id__": 1
+      },
+      "_components": [
+        {
+          "__type__": "cc.Sprite",
+          "node": {
+            "__id__": 4
+          },
+          "_spriteFrame": {
+            "__uuid__": "f0502314-a004-4beb-a13a-cfae710626b8"
+          }
+        }
+      ],
+      "_id": "eece9gWdO1GxbWx7KDowkEg",
+      "_contentSize": {
+        "__type__": "cc.Size",
+        "width": 20,
+        "height": 20
+      },
+      "_position": {
+        "__type__": "cc.Vec2",
+        "x": 387,
+        "y": 310
+      }
+    }
+  ],
+  {
+    "__type__": "cc.SpriteFrame",
+    "content": {
+      "name": "2",
+      "texture": "f15ccb4b-514a-4e65-b52c-37d2e95bf0a6",
+      "rect": [
+        20,
+        0,
+        20,
+        20
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        20,
+        20
+      ]
+    }
+  }
+]
