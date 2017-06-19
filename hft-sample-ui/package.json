@@ -1,0 +1,34 @@
+{
+  "name": "hft-sample-ui",
+  "version": "1.0.0",
+  "description": "A Sample UI for HappyFunTimes Games",
+  "main": "dist/sample-ui.js",
+  "scripts": {
+    "build": "webpack --config src/sample-ui.config.js"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greggman/hft-sample-ui.git"
+  },
+  "keywords": [
+    "happyfuntimes",
+    "hft",
+    "games",
+    "multiplayer"
+  ],
+  "author": "Gregg Tavares",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greggman/hft-sample-ui/issues"
+  },
+  "homepage": "https://github.com/greggman/hft-sample-ui#readme",
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-load-plugins": "^0.1.2"
+  }
+}
