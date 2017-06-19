@@ -5,7 +5,10 @@
 library/
 temp/
 local/
-build/
+build/jsb-link/
+build/jsb-default/
+build/jsb-binary/
+build/web-desktop/
 node_modules/
 
 #/////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,21 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "explosion",
+    "texture": "38673eb2-b126-4a5a-ac9a-25ced639b921",
+    "rect": [
+      0,
+      0,
+      244,
+      160
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      244,
+      160
+    ]
+  }
+}
