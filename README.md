@@ -27,9 +27,9 @@
 
 ## 制作组
 
-程序：@pandamicro @Deniulor
-策划：@Summer3205 @pandamicro @Deniulor
-美术：小钊
+- 程序：@pandamicro @Deniulor
+- 策划：@Summer3205 @pandamicro @Deniulor
+- 美术：小钊
 
 ## 文件说明
 
