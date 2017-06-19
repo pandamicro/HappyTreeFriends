@@ -16,9 +16,9 @@
 
 同时玩家人数可达几十人，场面欢乐无比，所以。。。撕逼吧～伙伴们！
 
-![](screen-shot-4.png)
-![](show1.jpg)
-![](show2.jpg)
+![](./screenshot/screen-shot-4.png)
+![](./screenshot/show1.jpg)
+![](./screenshot/show2.jpg)
 
 ## 技术框架
 
