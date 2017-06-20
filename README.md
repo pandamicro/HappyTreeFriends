@@ -22,8 +22,8 @@
 
 ## 试玩下载
 
-- Mac OS X ：https://pan.baidu.com/s/1i5uZ9bR （可能需要在 Mac OS 上[允许来自身份不明开发者的应用](https://support.apple.com/kb/PH25088?locale=zh_CN&viewlocale=zh_CN)）
-- Windows ：尚未打包
+- Mac OS X ：https://pan.baidu.com/s/1dF9uS5V （可能需要在 Mac OS 上[允许来自身份不明开发者的应用](https://support.apple.com/kb/PH25088?locale=zh_CN&viewlocale=zh_CN)）
+- Windows ：https://pan.baidu.com/s/1dF9uS5V
 
 ## 技术框架
 
